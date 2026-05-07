@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const numeros = [
-  { valor: '200+', label: 'Casamentos realizados' },
-  { valor: '8',    label: 'Anos de experiência'   },
-  { valor: '98%',  label: 'Clientes satisfeitos'  },
-  { valor: '5★',   label: 'Avaliação média'        },
+  { valor: '500+', label: 'Casamentos realizados' },
+  { valor: '20',   label: 'Anos de experiência'   },
+  { valor: '94%',  label: 'Casais que recomendam' },
+  { valor: '4.7★', label: 'Avaliação média'        },
 ];
 
 export default function AboutSection() {
@@ -24,7 +24,7 @@ export default function AboutSection() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* Número gigante decorativo no fundo */}
+
       <div aria-hidden style={{
         position: 'absolute',
         top: '-40px',
@@ -40,11 +40,10 @@ export default function AboutSection() {
         opacity: visible ? 1 : 0,
         transition: 'opacity 1.5s ease',
       }}>
-        08
+        20
       </div>
 
       <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        {/* Header */}
         <div style={{
           textAlign: 'center',
           marginBottom: 80,
@@ -63,19 +62,17 @@ export default function AboutSection() {
             lineHeight: 1.05,
             margin: 0,
           }}>
-            mais que uma empresa,<br />
-            <em style={{ fontStyle: 'italic', color: '#7B1F3A', fontWeight: 400 }}>guardiões</em> de memórias
+            há 20 anos criando<br />
+            <em style={{ fontStyle: 'italic', color: '#7B1F3A', fontWeight: 400 }}>cenários inesquecíveis</em>
           </h2>
         </div>
 
-        {/* Layout editorial assimétrico */}
         <div className="about-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1.2fr 1fr',
           gap: 80,
           alignItems: 'start',
         }}>
-          {/* Coluna esquerda: imagem grande com cantos arredondados estilo AE */}
           <div style={{
             position: 'relative',
             opacity: visible ? 1 : 0,
@@ -89,12 +86,12 @@ export default function AboutSection() {
               boxShadow: '0 30px 60px rgba(123,31,58,0.18)',
             }}>
               <img
-                src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=900&q=85"
-                alt="Casal sorrindo"
+                src={`${process.env.PUBLIC_URL}/imgs/about.jpeg`}
+                alt="Decoração Fest Noivas — passarela espelhada"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            {/* Selo flutuante */}
+ 
             <div style={{
               position: 'absolute',
               bottom: -30,
@@ -110,11 +107,10 @@ export default function AboutSection() {
               animation: visible ? 'spin 30s linear infinite' : 'none',
             }}>
               <div style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.8 }}>desde</div>
-              <div style={{ fontSize: 44, fontWeight: 500, lineHeight: 1, fontStyle: 'italic' }}>2017</div>
+              <div style={{ fontSize: 44, fontWeight: 500, lineHeight: 1, fontStyle: 'italic' }}>2005</div>
             </div>
           </div>
 
-          {/* Coluna direita: texto */}
           <div style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateX(0)' : 'translateX(50px)',
@@ -128,16 +124,18 @@ export default function AboutSection() {
               marginBottom: 28,
               fontWeight: 400,
             }}>
-              "Cada casamento é uma história única — e nós existimos para fazê-la inesquecível."
+              "A decoração do casamento deve representar a personalidade e os gostos do casal e criar uma atmosfera única para o grande dia."
             </p>
             <p style={{ fontSize: 15, color: '#6B4A55', lineHeight: 1.9, fontWeight: 300, marginBottom: 18 }}>
-              A Fest Noivas nasceu da paixão por transformar sonhos em realidade. Há mais de 8 anos, cuidamos de cada detalhe — do espaço à decoração, do buffet à cerimônia — para que o casal viva cada momento com leveza, presença e emoção.
+              A Fest Noivas está há mais de 20 anos no mercado de decoração para casamentos em Porto Velho, criando cenários inspiradores, exclusivos e inesquecíveis para casais que querem viver o seu grande dia em um ambiente cuidadosamente planejado nos mínimos detalhes.
+            </p>
+            <p style={{ fontSize: 15, color: '#6B4A55', lineHeight: 1.9, fontWeight: 300, marginBottom: 18 }}>
+              Nosso atendimento é reconhecido pelos noivos por escutar atentamente cada inspiração e vontade do casal, harmonizando seus gostos com as tendências do mercado para entregar um projeto único.
             </p>
             <p style={{ fontSize: 15, color: '#6B4A55', lineHeight: 1.9, fontWeight: 300, marginBottom: 32 }}>
-              Nossa equipe multidisciplinar une arquitetos de eventos, floristas, chefs e cerimonialistas com um único objetivo: que você não precise se preocupar com nada no seu grande dia.
+              Um grande dia envolve, em média, <strong style={{ color: '#7B1F3A', fontWeight: 500 }}>60 profissionais capacitados</strong> cuidando de cada detalhe para vocês, e nosso compromisso é coordenar tudo isso com a serenidade que o seu "sim" merece.
             </p>
 
-            {/* Assinatura tipo manuscrita */}
             <div style={{
               fontFamily: 'Caveat, cursive',
               fontSize: 32,
@@ -150,8 +148,7 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
-
-        {/* Números — em linha embaixo, estilo editorial */}
+        
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
@@ -203,6 +200,11 @@ export default function AboutSection() {
           .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
           .about-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 0 !important; }
           .about-stats > div:nth-child(2) { border-right: none !important; }
+        }
+        @media (max-width: 500px) {
+          .about-stats { grid-template-columns: 1fr !important; }
+          .about-stats > div { border-right: none !important; padding: 16px 0 !important; border-bottom: 1px solid #E8D5DA; }
+          .about-stats > div:last-child { border-bottom: none; }
         }
       `}</style>
     </section>

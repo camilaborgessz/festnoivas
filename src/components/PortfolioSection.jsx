@@ -1,16 +1,86 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 const eventos = [
-  { tipo: 'foto',  src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=85', titulo: 'Ana & Rafael',    tag: 'Clássico',    radius: '160px 24px 160px 24px', size: 'large',
-    fotos: ['https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=85','https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=85','https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=85','https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=85'] },
-  { tipo: 'video', src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', cover: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=900&q=85', titulo: 'Júlia & Marcos', tag: 'Boho',    radius: '24px 120px 24px 120px', size: 'small', fotos: [] },
-  { tipo: 'foto',  src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=85', titulo: 'Camila & Pedro',  tag: 'Minimalista', radius: '120px 24px 24px 24px', size: 'small',
-    fotos: ['https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=85','https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=85','https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=85'] },
-  { tipo: 'foto',  src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=85', titulo: 'Beatriz & Lucas', tag: 'Rústico',     radius: '24px 24px 160px 24px', size: 'medium',
-    fotos: ['https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=85','https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=85'] },
-  { tipo: 'video', src: 'https://www.youtube.com/embed/dQw4w9WgXcQ', cover: 'https://images.unsplash.com/photo-1525772764200-be829a350797?w=900&q=85', titulo: 'Sofia & Diego',  tag: 'Tropical', radius: '24px 24px 24px 120px', size: 'medium', fotos: [] },
-  { tipo: 'foto',  src: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=85', titulo: 'Maria & João',   tag: 'Boho',        radius: '24px 160px 24px 24px', size: 'large',
-    fotos: ['https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=85','https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=85','https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=85','https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=85'] },
+  {
+    tipo: 'foto',
+    src: `${process.env.PUBLIC_URL}/imgs/branco4.jpeg`,
+    titulo: 'Flores Brancas',
+    tag: 'Clássico',
+    radius: '160px 24px 160px 24px',
+    size: 'large',
+    fotos: [
+      `${process.env.PUBLIC_URL}/imgs/branco4.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/branca2.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/branca3.jpeg`,
+    ],
+  },
+  {
+    tipo: 'foto',
+    src: `${process.env.PUBLIC_URL}/imgs/rustico.jpeg`,
+    titulo: 'Terracota',
+    tag: 'Boho',
+    radius: '24px 120px 24px 120px',
+    size: 'small',
+    fotos: [
+      `${process.env.PUBLIC_URL}/imgs/rustico.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/rustico1.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/rustico2.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/rustico3.jpeg`,
+    ],
+  },
+  {
+    tipo: 'foto',
+    src: `${process.env.PUBLIC_URL}/imgs/terracota.jpeg`,
+    titulo: 'Coloridas',
+    tag: 'Tropical',
+    radius: '120px 24px 24px 24px',
+    size: 'small',
+    fotos: [
+      `${process.env.PUBLIC_URL}/imgs/terracota.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/terracota1.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/terracota2.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/terracota3.jpeg`,
+    ],
+  },
+  {
+    tipo: 'foto',
+    src: `${process.env.PUBLIC_URL}/imgs/azul.jpeg`,
+    titulo: 'Tema Azul',
+    tag: 'Romântico',
+    radius: '24px 24px 160px 24px',
+    size: 'medium',
+    fotos: [
+      `${process.env.PUBLIC_URL}/imgs/azul.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/azul1.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/azul2.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/branca1.jpeg`,
+    ],
+  },
+  {
+    tipo: 'foto',
+    src: `${process.env.PUBLIC_URL}/imgs/livre3.jpeg`,
+    titulo: 'Ao Ar Livre',
+    tag: 'Moderno',
+    radius: '24px 24px 24px 120px',
+    size: 'medium',
+    fotos: [
+      `${process.env.PUBLIC_URL}/imgs/livre3.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/livre.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/livre1.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/livre2.jpeg`,
+    ],
+  },
+  {
+    tipo: 'foto',
+    src: `${process.env.PUBLIC_URL}/imgs/espelho.jpeg`,
+    titulo: 'Passarela Espelhada',
+    tag: 'Glamour',
+    radius: '24px 160px 24px 24px',
+    size: 'large',
+    fotos: [
+      `${process.env.PUBLIC_URL}/imgs/espelho1.jpeg`,
+      `${process.env.PUBLIC_URL}/imgs/espelho2.jpeg`,
+    ],
+  },
 ];
 
 function Modal({ evento, onClose }) {
@@ -27,21 +97,13 @@ function Modal({ evento, onClose }) {
           <button onClick={onClose} style={{ background: '#F5E8EC', border: 'none', cursor: 'pointer', width: 36, height: 36, borderRadius: '50%', color: '#7B1F3A', fontSize: 18 }}>✕</button>
         </div>
         <div style={{ padding: 24, overflowY: 'auto', maxHeight: 'calc(90vh - 90px)' }}>
-          {evento.tipo === 'video' ? (
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-              <iframe src={evento.src} title={evento.titulo} frameBorder="0" allowFullScreen style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: 16 }} />
+          <img src={evento.fotos[fotoAtiva] || evento.src} alt={evento.titulo} loading="lazy" style={{ width: '100%', borderRadius: 16, objectFit: 'cover', maxHeight: 460 }} />
+          {evento.fotos.length > 1 && (
+            <div style={{ display: 'flex', gap: 10, marginTop: 16, overflowX: 'auto', paddingBottom: 4 }}>
+              {evento.fotos.map((f, i) => (
+                <img key={i} src={f} alt="" loading="lazy" onClick={() => setFotoAtiva(i)} style={{ width: 90, height: 65, objectFit: 'cover', borderRadius: 10, cursor: 'pointer', flexShrink: 0, border: `2px solid ${i === fotoAtiva ? '#7B1F3A' : 'transparent'}`, opacity: i === fotoAtiva ? 1 : 0.6, transition: 'all 0.2s' }} />
+              ))}
             </div>
-          ) : (
-            <>
-              <img src={evento.fotos[fotoAtiva] || evento.src} alt={evento.titulo} style={{ width: '100%', borderRadius: 16, objectFit: 'cover', maxHeight: 460 }} />
-              {evento.fotos.length > 1 && (
-                <div style={{ display: 'flex', gap: 10, marginTop: 16, overflowX: 'auto', paddingBottom: 4 }}>
-                  {evento.fotos.map((f, i) => (
-                    <img key={i} src={f} alt="" onClick={() => setFotoAtiva(i)} style={{ width: 90, height: 65, objectFit: 'cover', borderRadius: 10, cursor: 'pointer', flexShrink: 0, border: `2px solid ${i === fotoAtiva ? '#7B1F3A' : 'transparent'}`, opacity: i === fotoAtiva ? 1 : 0.6, transition: 'all 0.2s' }} />
-                  ))}
-                </div>
-              )}
-            </>
           )}
         </div>
       </div>
@@ -63,11 +125,11 @@ function PortfolioCard({ ev, index, onClick }) {
     return () => obs.disconnect();
   }, []);
 
-  // Tamanhos para mosaico assimétrico
+
   const sizes = {
-    large:  { gridColumn: 'span 7', aspectRatio: '4/3' },
+    large: { gridColumn: 'span 7', aspectRatio: '4/3' },
     medium: { gridColumn: 'span 5', aspectRatio: '4/4' },
-    small:  { gridColumn: 'span 5', aspectRatio: '4/3.5' },
+    small: { gridColumn: 'span 5', aspectRatio: '4/3.5' },
   };
   const size = sizes[ev.size] || sizes.medium;
 
@@ -86,45 +148,72 @@ function PortfolioCard({ ev, index, onClick }) {
       onMouseEnter={e => { e.currentTarget.style.scale = '1.02'; e.currentTarget.style.boxShadow = '0 30px 80px rgba(123,31,58,0.25)'; }}
       onMouseLeave={e => { e.currentTarget.style.scale = '1'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(123,31,58,0.12)'; }}
     >
-      <img src={ev.tipo === 'video' ? ev.cover : ev.src} alt={ev.titulo}
+      <img src={ev.src} alt={ev.titulo}
         className="port-img"
+        loading="lazy"
         style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.7s ease' }} />
 
-      {/* Overlay gradient com info */}
-      <div style={{
+
+      <div className="port-overlay" style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(to top, rgba(26,13,18,0.85) 0%, rgba(26,13,18,0.2) 50%, transparent 100%)',
+        background: 'linear-gradient(to top, rgba(26,13,18,0.92) 0%, rgba(26,13,18,0.55) 35%, rgba(26,13,18,0.15) 60%, transparent 100%)',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: 28,
+        padding: '36px 32px',
         color: '#FDFAF8',
       }}>
-        <div style={{ fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.85, marginBottom: 6 }}>
+ 
+        <div style={{
+          display: 'inline-flex',
+          alignSelf: 'flex-start',
+          background: 'rgba(253,250,248,0.18)',
+          backdropFilter: 'blur(10px)',
+          padding: '5px 12px',
+          borderRadius: 20,
+          fontSize: 10,
+          letterSpacing: '0.25em',
+          textTransform: 'uppercase',
+          fontWeight: 600,
+          marginBottom: 12,
+          border: '1px solid rgba(253,250,248,0.25)',
+        }}>
           {ev.tag}
         </div>
-        <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 28, fontStyle: 'italic', fontWeight: 400, lineHeight: 1.1 }}>
+
+        <div style={{
+          fontFamily: 'Cormorant Garamond, serif',
+          fontSize: 'clamp(22px, 2.4vw, 32px)',
+          fontStyle: 'italic',
+          fontWeight: 400,
+          lineHeight: 1.1,
+          marginBottom: 14,
+          textShadow: '0 2px 12px rgba(0,0,0,0.5)',
+        }}>
           {ev.titulo}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 12, fontSize: 12, opacity: 0.9 }}>
-          {ev.tipo === 'video' ? (
-            <><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Ver vídeo</>
-          ) : (
-            <>{ev.fotos.length} fotos · <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></>
-          )}
+
+
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          alignSelf: 'flex-start',
+          gap: 10,
+          fontSize: 12,
+          fontWeight: 500,
+          color: '#FDFAF8',
+          padding: '8px 14px',
+          background: 'rgba(123,31,58,0.85)',
+          borderRadius: 50,
+          backdropFilter: 'blur(6px)',
+          letterSpacing: '0.05em',
+        }}>
+          {ev.fotos.length} fotos
+          <span style={{ width: 1, height: 12, background: 'rgba(253,250,248,0.35)' }} />
+          ver galeria
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
         </div>
       </div>
-
-      {/* Badge de vídeo */}
-      {ev.tipo === 'video' && (
-        <div style={{
-          position: 'absolute', top: 20, right: 20,
-          width: 56, height: 56, borderRadius: '50%',
-          background: 'rgba(253,250,248,0.95)',
-          backdropFilter: 'blur(8px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#7B1F3A"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      )}
     </div>
   );
 }
@@ -139,7 +228,7 @@ export default function PortfolioSection() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* Decorativo de fundo: palavra gigante */}
+
       <div aria-hidden style={{
         position: 'absolute',
         top: 60,
@@ -158,7 +247,6 @@ export default function PortfolioSection() {
       </div>
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', position: 'relative' }}>
-        {/* Header */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -169,15 +257,18 @@ export default function PortfolioSection() {
         }} className="port-header">
           <div>
             <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#E8A0B4', marginBottom: 14 }}>
-              — Portfólio —
+              — Coleções —
             </div>
             <h2 style={{
               fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(36px, 5vw, 64px)',
-              fontWeight: 300, color: '#FDFAF8', lineHeight: 1.05, margin: 0,
+              fontSize: 'clamp(32px, 5vw, 64px)',
+              fontWeight: 300, color: '#FDFAF8', lineHeight: 1.1, margin: 0,
+              paddingBottom: 6,
             }}>
-              eventos que já<br />
-              <em style={{ fontStyle: 'italic', color: '#E8A0B4' }}>eternizamos juntos</em>
+              cenários que já<br />
+              <em style={{ fontStyle: 'italic', color: '#E8A0B4', display: 'inline-block', paddingBottom: 4 }}>
+                eternizamos juntos
+              </em>
             </h2>
           </div>
           <a href="https://www.instagram.com/festnoivass" target="_blank" rel="noopener noreferrer" style={{
@@ -192,11 +283,11 @@ export default function PortfolioSection() {
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(253,250,248,0.3)'; }}
           >
             @festnoivass
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M7 7h10v10" /></svg>
           </a>
         </div>
 
-        {/* Mosaico assimétrico 12 colunas */}
+   
         <div className="port-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(12, 1fr)',
@@ -214,6 +305,10 @@ export default function PortfolioSection() {
         .port-card:hover .port-img { transform: scale(1.08); }
         @media (max-width: 900px) {
           .port-grid > * { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
+          .port-overlay { padding: 24px 20px !important; }
+        }
+        @media (max-width: 500px) {
+          .port-overlay { padding: 20px 16px !important; }
         }
       `}</style>
     </section>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
-/* Polaroids — fotos do Unsplash com leve rotação e flutuação */
+const base = process.env.PUBLIC_URL || '';
 const polaroids = [
-  { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80', label: 'Ana & Rafael · 2025', rotate: -8, top: '14%',  left: '4%',  delay: 0.2, float: 0 },
-  { src: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=500&q=80', label: 'Júlia & Marcos',     rotate:  6, top: '8%',   right: '5%', delay: 0.5, float: 1 },
-  { src: 'https://images.unsplash.com/photo-1525772764200-be829a350797?w=500&q=80', label: 'Camila & Pedro',     rotate: -5, bottom: '14%', left: '7%', delay: 0.8, float: 2 },
+  { src: `${base}/imgs/polaroid1.jpeg`, rotate: -8, top: '14%',    left: '4%',  delay: 0.2, float: 0 },
+  { src: `${base}/imgs/polaroid2.jpeg`, rotate:  6, top: '14%',    right: '5%', delay: 0.5, float: 1 },
+  { src: `${base}/imgs/polaroid3.jpeg`, rotate: -5, bottom: '14%', left: '7%',  delay: 0.8, float: 2 },
 ];
 
 export default function HeroSection({ onStartForm }) {
@@ -29,10 +28,9 @@ export default function HeroSection({ onStartForm }) {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      {/* IMAGEM DE FUNDO com parallax + overlay vinho */}
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: 'url(https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=85)',
+        backgroundImage: `url(${base}/imgs/fundo.jpeg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
@@ -40,14 +38,12 @@ export default function HeroSection({ onStartForm }) {
         filter: 'brightness(0.55) saturate(0.8)',
       }} />
 
-      {/* Gradiente vinho + grão */}
       <div style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(180deg, rgba(26,13,18,0.5) 0%, rgba(123,31,58,0.35) 40%, rgba(26,13,18,0.85) 100%)',
         pointerEvents: 'none',
       }} />
 
-      {/* Textura de grão (SVG noise) */}
       <div style={{
         position: 'absolute', inset: 0,
         backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence baseFrequency=%220.9%22/><feColorMatrix values=%220 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0%22/></filter><rect width=%22120%22 height=%22120%22 filter=%22url(%23n)%22/></svg>")',
@@ -56,7 +52,6 @@ export default function HeroSection({ onStartForm }) {
         pointerEvents: 'none',
       }} />
 
-      {/* POLAROIDS flutuantes */}
       {polaroids.map((p, i) => (
         <div key={i} className={`polaroid polaroid-${p.float}`} style={{
           position: 'absolute',
@@ -82,28 +77,27 @@ export default function HeroSection({ onStartForm }) {
         </div>
       ))}
 
-      {/* CONTEÚDO CENTRAL */}
-      <div style={{
+      <div className="hero-content" style={{
         position: 'relative',
         zIndex: 5,
         textAlign: 'center',
         padding: '0 24px',
         maxWidth: 1200,
       }}>
-        {/* Eyebrow */}
         <div className="reveal-up" style={{
           display: 'inline-flex', alignItems: 'center', gap: 12,
           fontSize: 11, fontWeight: 500, letterSpacing: '0.35em',
           textTransform: 'uppercase', color: '#F5E8EC',
           marginBottom: 28,
           animationDelay: '0.1s',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
         }}>
           <span style={{ width: 24, height: 1, background: '#F5E8EC', opacity: 0.6 }} />
-          Fest Noivas · Desde 2017
+          Fest Noivas · Porto Velho · 20 anos
           <span style={{ width: 24, height: 1, background: '#F5E8EC', opacity: 0.6 }} />
         </div>
 
-        {/* TÍTULO STATEMENT GIGANTE */}
         <h1 style={{
           fontFamily: 'Cormorant Garamond, serif',
           fontWeight: 300,
@@ -113,50 +107,48 @@ export default function HeroSection({ onStartForm }) {
           margin: 0,
         }}>
           <span className="reveal-up" style={{
-            display: 'block', fontSize: 'clamp(40px, 7vw, 90px)', fontWeight: 300,
+            display: 'block', fontSize: 'clamp(34px, 6.5vw, 84px)', fontWeight: 300,
             animationDelay: '0.3s',
           }}>
-            transformando o
+            cenários que contam
           </span>
           <span className="reveal-up word-massive" style={{
             display: 'block',
             fontFamily: 'Cormorant Garamond, serif',
             fontStyle: 'italic',
             fontWeight: 400,
-            fontSize: 'clamp(80px, 18vw, 240px)',
+            fontSize: 'clamp(72px, 17vw, 230px)',
             lineHeight: 0.85,
             color: 'transparent',
             WebkitTextStroke: '1.5px #F5E8EC',
             margin: '8px 0',
             animationDelay: '0.5s',
           }}>
-            "sim"
+            histórias
           </span>
           <span className="reveal-up" style={{
-            display: 'block', fontSize: 'clamp(28px, 5vw, 64px)', fontWeight: 300,
+            display: 'block', fontSize: 'clamp(24px, 4.5vw, 58px)', fontWeight: 300,
             fontStyle: 'italic',
             color: '#E8A0B4',
             animationDelay: '0.7s',
           }}>
-            em momentos eternos
+            de amor
           </span>
         </h1>
 
-        {/* Subtítulo */}
         <p className="reveal-up" style={{
           fontSize: 16,
           color: '#F5E8EC',
           opacity: 0.85,
-          maxWidth: 520,
+          maxWidth: 560,
           margin: '40px auto 0',
           lineHeight: 1.8,
           fontWeight: 300,
           animationDelay: '0.9s',
         }}>
-          Cuidamos de cada detalhe — do espaço à decoração, do buffet à cerimônia — para que você viva o seu grande dia com leveza e emoção.
+          Há 20 anos criando cenários inspiradores, exclusivos e inesquecíveis em Porto Velho, porque cada decoração deve representar a personalidade do casal e a atmosfera única do grande dia.
         </p>
 
-        {/* CTAs */}
         <div className="reveal-up" style={{
           display: 'flex', gap: 16, justifyContent: 'center',
           flexWrap: 'wrap', marginTop: 44,
@@ -173,7 +165,7 @@ export default function HeroSection({ onStartForm }) {
             onMouseEnter={e => { e.currentTarget.style.background = '#7B1F3A'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = '#FDFAF8'; e.currentTarget.style.color = '#1A0D12'; e.currentTarget.style.transform = 'translateY(0)'; }}
           >
-            Planejar meu casamento
+            Planejar casamento
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </button>
 
@@ -188,13 +180,13 @@ export default function HeroSection({ onStartForm }) {
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(253,250,248,0.1)'; e.currentTarget.style.borderColor = '#FDFAF8'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(253,250,248,0.5)'; }}
           >
-            Instagram
+            @festnoivass
           </a>
         </div>
       </div>
 
-      {/* SCROLL INDICATOR */}
-      <div style={{
+
+      <div className="scroll-indicator" style={{
         position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
         zIndex: 5,
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
@@ -206,7 +198,6 @@ export default function HeroSection({ onStartForm }) {
         </div>
       </div>
 
-      {/* Estilos globais e animações */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
@@ -243,6 +234,13 @@ export default function HeroSection({ onStartForm }) {
 
         @media (max-width: 900px) {
           .polaroid { display: none; }
+        }
+        @media (max-width: 768px) {
+          .scroll-indicator { display: none !important; }
+          .hero-content { padding-top: 80px !important; }
+        }
+        @media (max-width: 600px) {
+          section h1 .reveal-up { letter-spacing: -0.01em; }
         }
       `}</style>
     </section>

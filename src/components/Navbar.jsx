@@ -31,7 +31,6 @@ export default function Navbar() {
     setMenuOpen(false);
   }
 
-  // Cores adaptativas: hero escuro -> texto claro; resto -> texto vinho
   const onDark = !scrolled;
   const textColor = onDark ? '#FDFAF8' : '#4A2A35';
   const activeBg  = onDark ? 'rgba(253,250,248,0.15)' : '#F5E8EC';
@@ -41,14 +40,15 @@ export default function Navbar() {
     <>
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-        background: scrolled ? 'rgba(253,250,248,0.96)' : 'transparent',
+        background: scrolled ? 'rgba(253,250,248,0.96)' : '#1A0D12',
         backdropFilter: scrolled ? 'blur(14px)' : 'none',
         borderBottom: scrolled ? '1px solid #E8D5DA' : 'none',
-        transition: 'all 0.4s ease',
+        boxShadow: scrolled ? '0 2px 12px rgba(123,31,58,0.08)' : 'none',
+        transition: 'background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease',
         padding: scrolled ? '14px 32px' : '22px 32px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
-        {/* Logo */}
+ 
         <div onClick={() => goTo('hero')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}>
           <img
             src={`${process.env.PUBLIC_URL}/logoFestnoivas.svg`}
@@ -61,7 +61,7 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Links desktop */}
+     
         <div style={{ display: 'flex', gap: 4, alignItems: 'center' }} className="nav-links">
           {links.map(l => (
             <button key={l.id} onClick={() => goTo(l.id)} style={{
@@ -90,11 +90,11 @@ export default function Navbar() {
             onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
           >
-            Quero meu casamento
+            Planejar meu casamento
           </button>
         </div>
 
-        {/* Hamburguer mobile */}
+     
         <button onClick={() => setMenuOpen(o => !o)} style={{
           display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4,
         }} className="hamburger">
@@ -104,27 +104,47 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Menu mobile */}
+    
       {menuOpen && (
         <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1001,
           background: 'rgba(26,13,18,0.98)',
           backdropFilter: 'blur(20px)',
           display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', gap: 8,
+          alignItems: 'center',
         }}>
-          {links.map((l, i) => (
-            <button key={l.id} onClick={() => goTo(l.id)} style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 36, fontWeight: 300, fontStyle: 'italic',
-              color: active === l.id ? '#E8A0B4' : '#FDFAF8',
-              padding: '10px 24px',
-              animation: `slideIn 0.4s ease ${i * 0.06}s both`,
+          <div style={{
+            width: '100%', display: 'flex', alignItems: 'center',
+            justifyContent: 'space-between', padding: '20px 20px', boxSizing: 'border-box',
+          }}>
+            <img
+              src={`${process.env.PUBLIC_URL}/logoFestnoivas.svg`}
+              alt="Fest Noivas"
+              style={{ height: 36, filter: 'brightness(0) invert(1)', cursor: 'pointer' }}
+              onClick={() => goTo('hero')}
+            />
+            <button onClick={() => setMenuOpen(false)} style={{
+              background: 'none', border: 'none', cursor: 'pointer', padding: 4,
+              display: 'flex', flexDirection: 'column', gap: 0,
             }}>
-              {l.label}
+              <div style={{ width: 26, height: 2, background: '#FDFAF8', transform: 'rotate(45deg) translate(0px, 4px)' }} />
+              <div style={{ width: 26, height: 2, background: '#FDFAF8', transform: 'rotate(-45deg) translate(0px, -4px)' }} />
             </button>
-          ))}
+          </div>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+            {links.map((l, i) => (
+              <button key={l.id} onClick={() => goTo(l.id)} style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: 36, fontWeight: 300, fontStyle: 'italic',
+                color: active === l.id ? '#E8A0B4' : '#FDFAF8',
+                padding: '10px 24px',
+                animation: `slideIn 0.4s ease ${i * 0.06}s both`,
+              }}>
+                {l.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -136,6 +156,9 @@ export default function Navbar() {
         @media (max-width: 900px) {
           .nav-links { display: none !important; }
           .hamburger { display: block !important; }
+        }
+        @media (max-width: 600px) {
+          nav { padding: 14px 20px !important; }
         }
       `}</style>
     </>

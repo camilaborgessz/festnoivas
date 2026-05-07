@@ -40,9 +40,6 @@ export default function SuccessScreen({ dados }) {
       <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 32, fontWeight: 400, color: '#2A1A20', marginBottom: 12 }}>
         Tudo preenchido!
       </h2>
-      <p style={{ fontSize: 15, color: '#6B4A55', fontWeight: 300, lineHeight: 1.7, maxWidth: 380, margin: '0 auto 0' }}>
-        Confira o resumo abaixo e clique no botão para enviar direto pelo WhatsApp para a nossa equipe. 💍
-      </p>
 
       <div style={{
         background: '#fff',
@@ -97,10 +94,6 @@ export default function SuccessScreen({ dados }) {
         </svg>
         Enviar respostas pelo WhatsApp
       </a>
-
-      <p style={{ marginTop: 20, fontSize: 13, color: '#A07A87', fontWeight: 300 }}>
-        Aperte para enviar!
-      </p>
     </div>
   );
 }

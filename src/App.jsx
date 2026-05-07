@@ -1,18 +1,18 @@
 import React, { useState, useRef } from 'react';
 
-import Navbar              from './components/Navbar';
-import HeroSection         from './components/HeroSection';
-import AboutSection        from './components/AboutSection';
-import ServicesSection     from './components/ServicesSection';
-import PortfolioSection    from './components/PortfolioSection';
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import ServicesSection from './components/ServicesSection';
+import PortfolioSection from './components/PortfolioSection';
 import TestimonialsSection from './components/TestimonialsSection';
-import Footer              from './components/Footer';
+import Footer from './components/Footer';
 
-import ProgressBar   from './components/ProgressBar';
-import StepCard      from './components/StepCard';
-import RadioOption   from './components/RadioOption';
-import StyleCard     from './components/StyleCard';
-import NavButtons    from './components/NavButtons';
+import ProgressBar from './components/ProgressBar';
+import StepCard from './components/StepCard';
+import RadioOption from './components/RadioOption';
+import StyleCard from './components/StyleCard';
+import NavButtons from './components/NavButtons';
 import SuccessScreen from './components/SuccessScreen';
 import { estilosDecoracao, locaisEvento } from './data/formData';
 
@@ -26,15 +26,15 @@ const inputStyle = {
 export default function App() {
   const formRef = useRef(null);
 
-  const [step,       setStep]       = useState(0);
-  const [errors,     setErrors]     = useState({});
-  const [done,       setDone]       = useState(false);
-  const [data,       setData]       = useState('');
+  const [step, setStep] = useState(0);
+  const [errors, setErrors] = useState({});
+  const [done, setDone] = useState(false);
+  const [data, setData] = useState('');
   const [convidados, setConvidados] = useState('');
-  const [local,      setLocal]      = useState('');
+  const [local, setLocal] = useState('');
   const [outroLocal, setOutroLocal] = useState('');
   const [cerimonial, setCerimonial] = useState('');
-  const [estilos,    setEstilos]    = useState([]);
+  const [estilos, setEstilos] = useState([]);
   const [dadosFinais, setDadosFinais] = useState(null);
 
   function scrollToForm() {
@@ -74,7 +74,7 @@ export default function App() {
     const localFinal = local === 'outro' ? outroLocal.trim() : local;
     setDadosFinais({ data, convidados, local: localFinal, cerimonial, estilos });
     setDone(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToForm();
   }
 
   function toggleEstilo(nome) {
@@ -85,7 +85,7 @@ export default function App() {
     <div style={{ minHeight: '100vh', background: '#FDFAF8' }}>
       <Navbar />
 
-      <div id="hero" style={{ paddingTop: 80 }}>
+      <div id="hero">
         <HeroSection onStartForm={scrollToForm} />
       </div>
 
@@ -94,15 +94,23 @@ export default function App() {
       <PortfolioSection />
       <TestimonialsSection />
 
-      {/* Formulário */}
       <section id="formulario" ref={formRef} style={{ background: '#FDFAF8', padding: '80px 0 0' }}>
         <div style={{ textAlign: 'center', marginBottom: 48, padding: '0 24px' }}>
           <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A07A87', marginBottom: 12 }}>
             Formulário
           </div>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(28px, 5vw, 46px)', fontWeight: 300, color: '#2A1A20' }}>
+          <h2 style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontSize: 'clamp(28px, 5vw, 46px)',
+            fontWeight: 300,
+            color: '#2A1A20',
+            lineHeight: 1.2,
+            paddingBottom: 4,
+          }}>
             Conte-nos sobre o seu<br />
-            <em style={{ fontStyle: 'italic', color: '#7B1F3A' }}>casamento dos sonhos</em>
+            <em style={{ fontStyle: 'italic', color: '#7B1F3A', display: 'inline-block', paddingBottom: 4 }}>
+              casamento dos sonhos
+            </em>
           </h2>
           <p style={{ fontSize: 15, color: '#6B4A55', maxWidth: 420, margin: '16px auto 0', lineHeight: 1.7, fontWeight: 300 }}>
             Preencha o questionário e nossa equipe entrará em contato para dar vida ao seu sonho.
@@ -110,7 +118,7 @@ export default function App() {
           <div style={{ width: 48, height: 2, background: '#7B1F3A', margin: '20px auto 0', opacity: 0.4 }} />
         </div>
 
-        <main style={{ maxWidth: 680, margin: '0 auto', padding: '0 20px 80px' }}>
+        <main style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 80px' }}>
           {done ? (
             <SuccessScreen dados={dadosFinais} />
           ) : (
@@ -125,7 +133,7 @@ export default function App() {
               )}
 
               {step === 1 && (
-                <StepCard number={2} question="Quantidade de convidados?" sub="Número aproximado esperado." error={errors[1]}>
+                <StepCard number={2} question="Quantidade de convidados?" sub="Número aproximado esperado. Esse é o item que mais reflete no investimento final." error={errors[1]}>
                   <input type="number" value={convidados} onChange={e => setConvidados(e.target.value)}
                     placeholder="Ex: 150" min="1" style={inputStyle} />
                 </StepCard>
@@ -158,13 +166,46 @@ export default function App() {
               )}
 
               {step === 4 && (
-                <StepCard number={5} question="Qual é o estilo da decoração?" sub="Navegue pelas fotos e selecione um ou mais estilos." error={errors[4]}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 12 }}>
+                <StepCard
+                  number={5}
+                  question="Qual é o estilo da decoração?"
+                  sub="Clique em 'Saiba mais' para entender cada estilo, e selecione um ou mais que combinem com vocês."
+                  error={errors[4]}
+                >
+
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                    gap: 16,
+                  }}>
                     {estilosDecoracao.map(est => (
-                      <StyleCard key={est.id} estilo={est} selected={estilos.includes(est.nome)}
-                        onToggle={() => { toggleEstilo(est.nome); setErrors({}); }} />
+                      <StyleCard
+                        key={est.id}
+                        estilo={est}
+                        selected={estilos.includes(est.nome)}
+                        onToggle={() => { toggleEstilo(est.nome); setErrors({}); }}
+                      />
                     ))}
                   </div>
+
+                  {estilos.length > 0 && (
+                    <div style={{
+                      marginTop: 20, padding: '12px 16px',
+                      background: '#fff',
+                      border: '1.5px solid #7B1F3A',
+                      borderRadius: 10,
+                      fontSize: 13, color: '#2A1A20',
+                      display: 'flex', alignItems: 'center', gap: 8,
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7B1F3A" strokeWidth="2.5">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <strong style={{ color: '#7B1F3A', fontWeight: 600 }}>
+                        {estilos.length} estilo{estilos.length > 1 ? 's' : ''} selecionado{estilos.length > 1 ? 's' : ''}:
+                      </strong>
+                      <span>{estilos.join(', ')}</span>
+                    </div>
+                  )}
                 </StepCard>
               )}
 
