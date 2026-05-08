@@ -69,7 +69,7 @@ export default function ServicesSection() {
 
   if (isMobile) {
     return (
-      <section id="servicos" style={{ background: '#FDFAF8', padding: '80px 24px' }}>
+      <section id="servicos" style={{ background: '#FDFAF8', padding: '20px 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#A07A87', marginBottom: 14 }}>
             — O que oferecemos —

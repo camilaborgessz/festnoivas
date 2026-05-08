@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const numeros = [
   { valor: '500+', label: 'Casamentos realizados' },
-  { valor: '20',   label: 'Anos de experiência'   },
+  { valor: '20', label: 'Anos de experiência' },
 ];
 
 export default function AboutSection() {
@@ -69,16 +69,16 @@ export default function AboutSection() {
           display: 'grid',
           gridTemplateColumns: '1.2fr 1fr',
           gap: 80,
-          alignItems: 'start',
+          alignItems: 'center',
         }}>
-          <div style={{
+          <div className="about-image-wrap" style={{
             position: 'relative',
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateX(0)' : 'translateX(-50px)',
             transition: 'all 1s cubic-bezier(0.2, 0.8, 0.3, 1) 0.2s',
           }}>
             <div style={{
-              borderRadius: '24px 160px 24px 160px',
+              borderRadius: '24px 130px 24px 130px',
               overflow: 'hidden',
               aspectRatio: '4/3',
               boxShadow: '0 30px 60px rgba(123,31,58,0.18)',
@@ -94,8 +94,8 @@ export default function AboutSection() {
                 }}
               />
             </div>
- 
-            <div style={{
+
+            <div className="about-badge" style={{
               position: 'absolute',
               bottom: -30,
               right: -20,
@@ -118,12 +118,12 @@ export default function AboutSection() {
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateX(0)' : 'translateX(50px)',
             transition: 'all 1s cubic-bezier(0.2, 0.8, 0.3, 1) 0.4s',
-            paddingTop: 40,
           }}>
             <p style={{
               fontFamily: 'Cormorant Garamond, serif',
               fontSize: 24, fontStyle: 'italic',
               color: '#7B1F3A', lineHeight: 1.4,
+              marginTop: 0,
               marginBottom: 28,
               fontWeight: 400,
             }}>
@@ -133,10 +133,10 @@ export default function AboutSection() {
               A Fest Noivas está há mais de 20 anos no mercado de decoração para casamentos em Porto Velho, criando cenários inspiradores, exclusivos e inesquecíveis para casais que querem viver o seu grande dia em um ambiente cuidadosamente planejado nos mínimos detalhes.
             </p>
             <p style={{ fontSize: 15, color: '#6B4A55', lineHeight: 1.9, fontWeight: 300, marginBottom: 18 }}>
-              Nosso atendimento é reconhecido pelos noivos por escutar atentamente cada inspiração e vontade do casal, harmonizando seus gostos com as tendências do mercado para entregar um projeto único.
+              Nosso atendimento é reconhecido pelos noivos pela sensibilidade em compreender cada sonho, inspiração e desejo do casal, transformando suas ideias em um projeto exclusivo, elegante e alinhado às suas expectativas.
             </p>
             <p style={{ fontSize: 15, color: '#6B4A55', lineHeight: 1.9, fontWeight: 300, marginBottom: 32 }}>
-              Um grande dia envolve, em média, <strong style={{ color: '#7B1F3A', fontWeight: 500 }}>60 profissionais capacitados</strong> cuidando de cada detalhe para vocês, e nosso compromisso é coordenar tudo isso com a serenidade que o seu "sim" merece.
+              Um grande dia envolve, em média, mais de<strong style={{ color: '#7B1F3A', fontWeight: 500 }}> 40 profissionais altamente capacitados</strong> dedicados a entregar uma experiência inesquecível. E o nosso compromisso contribuir com leveza e serenidade, para que vocês vivam o “sim” mais importante de suas vidas com tranquilidade e emoção.
             </p>
 
             <div style={{
@@ -151,7 +151,7 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
-        
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, minmax(0, 280px))',
@@ -204,9 +204,27 @@ export default function AboutSection() {
           to   { transform: rotate(360deg); }
         }
         @media (max-width: 900px) {
-          .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 64px !important;
+            align-items: stretch !important;
+          }
+          .about-image-wrap {
+            max-width: 520px;
+            margin: 0 auto;
+            width: 100%;
+          }
         }
         @media (max-width: 500px) {
+          .about-badge {
+            width: 100px !important;
+            height: 100px !important;
+            bottom: -20px !important;
+            right: -10px !important;
+          }
+          .about-badge > div:nth-child(2) {
+            font-size: 34px !important;
+          }
           .about-stats {
             grid-template-columns: 1fr !important;
             max-width: 320px !important;

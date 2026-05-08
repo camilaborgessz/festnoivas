@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 const base = process.env.PUBLIC_URL || '';
+
 const polaroids = [
-  { src: `${base}/imgs/polaroid1.jpeg`, rotate: -8, top: '14%',    left: '4%',  delay: 0.2, float: 0 },
-  { src: `${base}/imgs/polaroid2.jpeg`, rotate:  6, top: '14%',    right: '5%', delay: 0.5, float: 1 },
-  { src: `${base}/imgs/polaroid3.jpeg`, rotate: -5, bottom: '14%', left: '7%',  delay: 0.8, float: 2 },
-  { src: `${base}/imgs/polaroid4.jpeg`, rotate:  7, bottom: '14%', right: '7%', delay: 1.0, float: 0 },
+  { src: `${base}/imgs/polaroid1.jpeg`, rotate: -8, top: '18%', left: '2%', delay: 0.2, float: 0 },
+  { src: `${base}/imgs/polaroid2.jpeg`, rotate: 6, top: '18%', right: '2%', delay: 0.5, float: 1 },
+  { src: `${base}/imgs/polaroid3.jpeg`, rotate: -5, bottom: '12%', left: '3%', delay: 0.8, float: 2 },
+  { src: `${base}/imgs/polaroid4.jpeg`, rotate: 7, bottom: '12%', right: '3%', delay: 1.0, float: 0 },
 ];
 
 export default function HeroSection({ onStartForm }) {
@@ -28,6 +29,7 @@ export default function HeroSection({ onStartForm }) {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingTop: 100,
     }}>
       <div style={{
         position: 'absolute', inset: 0,
@@ -53,11 +55,12 @@ export default function HeroSection({ onStartForm }) {
         pointerEvents: 'none',
       }} />
 
+      {/* Polaroids posicionadas (apenas desktop/tablet) */}
       {polaroids.map((p, i) => (
-        <div key={i} className={`polaroid polaroid-${p.float}`} style={{
+        <div key={i} className={`polaroid-desktop polaroid-${p.float}`} style={{
           position: 'absolute',
           top: p.top, left: p.left, right: p.right, bottom: p.bottom,
-          width: 180, padding: 10, paddingBottom: 32,
+          width: 160, padding: 10, paddingBottom: 32,
           background: '#FDFAF8',
           boxShadow: '0 30px 60px rgba(0,0,0,0.5), 0 8px 18px rgba(0,0,0,0.35)',
           transform: `rotate(${p.rotate}deg) translateY(${mounted ? 0 : 60}px)`,
@@ -65,16 +68,7 @@ export default function HeroSection({ onStartForm }) {
           transition: `opacity 1s ease ${p.delay}s, transform 1s cubic-bezier(0.2, 0.8, 0.3, 1) ${p.delay}s`,
           zIndex: 3,
         }}>
-          <img src={p.src} alt="" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} />
-          <div style={{
-            position: 'absolute', bottom: 8, left: 0, right: 0,
-            textAlign: 'center',
-            fontFamily: 'Caveat, cursive',
-            fontSize: 16,
-            color: '#7B1F3A',
-          }}>
-            {p.label}
-          </div>
+          <img src={p.src} alt="" style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
         </div>
       ))}
 
@@ -84,6 +78,8 @@ export default function HeroSection({ onStartForm }) {
         textAlign: 'center',
         padding: '0 24px',
         maxWidth: 1200,
+        width: '100%',
+        boxSizing: 'border-box',
       }}>
         <div className="reveal-up hero-logo" style={{
           display: 'flex',
@@ -202,6 +198,33 @@ export default function HeroSection({ onStartForm }) {
             @festnoivass
           </a>
         </div>
+
+        {/* Faixa de polaroids — mobile apenas (em fluxo, abaixo dos botões) */}
+        <div className="polaroids-mobile" style={{
+          marginTop: 36,
+          display: 'none',
+          gap: 16,
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexWrap: 'nowrap',
+          opacity: mounted ? 1 : 0,
+          transform: mounted ? 'translateY(0)' : 'translateY(40px)',
+          transition: 'opacity 1s ease 1.3s, transform 1s cubic-bezier(0.2, 0.8, 0.3, 1) 1.3s',
+        }}>
+          {polaroids.map((p, i) => (
+            <div key={`m-${i}`} style={{
+              flex: '0 0 auto',
+              width: 86,
+              padding: 6,
+              paddingBottom: 16,
+              background: '#FDFAF8',
+              boxShadow: '0 14px 28px rgba(0,0,0,0.45), 0 4px 8px rgba(0,0,0,0.3)',
+              transform: `rotate(${p.rotate * 0.6}deg)`,
+            }}>
+              <img src={p.src} alt="" style={{ width: '100%', height: 88, objectFit: 'cover', display: 'block' }} />
+            </div>
+          ))}
+        </div>
       </div>
 
 
@@ -211,10 +234,6 @@ export default function HeroSection({ onStartForm }) {
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
         color: '#F5E8EC', opacity: 0.7,
       }}>
-        <div style={{ fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase' }}>Scroll</div>
-        <div style={{ width: 1, height: 40, background: '#F5E8EC', position: 'relative', overflow: 'hidden' }}>
-          <div className="scroll-line" />
-        </div>
       </div>
 
       <style>{`
@@ -251,48 +270,39 @@ export default function HeroSection({ onStartForm }) {
           0% { top: -100%; } 100% { top: 100%; }
         }
 
-        /* Tablet: polaroides menores, ainda visíveis */
+        /* Notebooks menores: encolhe polaroides para não invadir texto */
+        @media (max-width: 1100px) {
+          .polaroid-desktop {
+            width: 130px !important;
+          }
+          .polaroid-desktop img {
+            height: 140px !important;
+          }
+        }
+
+        /* Tablet: polaroides ainda menores nos cantos */
         @media (max-width: 900px) {
-          .polaroid {
+          .polaroid-desktop {
             width: 110px !important;
             padding: 6px !important;
             padding-bottom: 22px !important;
           }
-          .polaroid img {
-            height: 120px !important;
+          .polaroid-desktop img {
+            height: 110px !important;
           }
         }
 
-        /* Mobile: só 2 polaroides (uma de cada lado), bem pequenas e nos cantos */
-        @media (max-width: 600px) {
-          .polaroid {
-            width: 78px !important;
-            padding: 4px !important;
-            padding-bottom: 14px !important;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.55), 0 4px 8px rgba(0,0,0,0.35) !important;
-          }
-          .polaroid img {
-            height: 80px !important;
-          }
-          /* esconde polaroides do meio/topo no mobile, mantém só as de baixo */
-          .polaroid:nth-child(4),
-          .polaroid:nth-child(5) {
-            top: auto !important;
-            bottom: 4% !important;
-          }
-          .polaroid:nth-child(6),
-          .polaroid:nth-child(7) {
-            top: 6% !important;
-            bottom: auto !important;
-          }
-          .hero-logo img {
-            height: 56px !important;
-          }
+        /* Mobile: esconde as absolutas, mostra a faixa horizontal abaixo */
+        @media (max-width: 700px) {
+          .polaroid-desktop { display: none !important; }
+          .polaroids-mobile { display: flex !important; }
+          .hero-logo img { height: 64px !important; }
+          .scroll-indicator { display: none !important; }
+          section { padding-bottom: 80px !important; }
         }
 
         @media (max-width: 768px) {
           .scroll-indicator { display: none !important; }
-          .hero-content { padding-top: 60px !important; padding-bottom: 100px !important; }
         }
         @media (max-width: 600px) {
           section h1 .reveal-up { letter-spacing: -0.01em; }

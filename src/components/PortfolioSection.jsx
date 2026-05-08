@@ -3,44 +3,42 @@ import React, { useEffect, useRef, useState } from 'react';
 const eventos = [
   {
     src: `${process.env.PUBLIC_URL}/imgs/branco4.jpeg`,
-    titulo: 'Flores Brancas',
-    tag: 'Clássico',
     radius: '160px 24px 160px 24px',
     size: 'large',
   },
   {
     src: `${process.env.PUBLIC_URL}/imgs/rustico3.jpeg`,
-    titulo: 'Rústico',
-    tag: 'Charme campestre',
     radius: '24px 120px 24px 120px',
     size: 'small',
   },
   {
     src: `${process.env.PUBLIC_URL}/imgs/terracota.jpeg`,
-    titulo: 'Coloridas',
-    tag: 'Tropical',
     radius: '120px 24px 24px 24px',
     size: 'small',
   },
   {
     src: `${process.env.PUBLIC_URL}/imgs/azul.jpeg`,
-    titulo: 'Tema Azul',
-    tag: 'Romântico',
     radius: '24px 24px 160px 24px',
     size: 'medium',
   },
   {
     src: `${process.env.PUBLIC_URL}/imgs/livre3.jpeg`,
-    titulo: 'Ao Ar Livre',
-    tag: 'Moderno',
     radius: '24px 24px 24px 120px',
     size: 'medium',
   },
   {
     src: `${process.env.PUBLIC_URL}/imgs/espelho.jpeg`,
-    titulo: 'Passarela Espelhada',
-    tag: 'Glamour',
     radius: '24px 160px 24px 24px',
+    size: 'large',
+  },
+  {
+    src: `${process.env.PUBLIC_URL}/imgs/portifolio.jpeg`,
+    radius: '24px 120px 120px 24px',
+    size: 'small',
+  },
+  {
+    src: `${process.env.PUBLIC_URL}/imgs/portfolio1.jpeg`,
+    radius: '160px 24px 24px 160px',
     size: 'large',
   },
 ];
@@ -56,9 +54,9 @@ function PortfolioCard({ ev, index }) {
   }, []);
 
   const sizes = {
-    large:  { gridColumn: 'span 7', aspectRatio: '4/3' },
+    large: { gridColumn: 'span 7', aspectRatio: '4/3' },
     medium: { gridColumn: 'span 5', aspectRatio: '4/4' },
-    small:  { gridColumn: 'span 5', aspectRatio: '4/3.5' },
+    small: { gridColumn: 'span 5', aspectRatio: '4/3.5' },
   };
   const size = sizes[ev.size] || sizes.medium;
 
@@ -91,22 +89,6 @@ function PortfolioCard({ ev, index }) {
         padding: '36px 32px',
         color: '#FDFAF8',
       }}>
-        <div style={{
-          display: 'inline-flex',
-          alignSelf: 'flex-start',
-          background: 'rgba(253,250,248,0.18)',
-          backdropFilter: 'blur(10px)',
-          padding: '5px 12px',
-          borderRadius: 20,
-          fontSize: 10,
-          letterSpacing: '0.25em',
-          textTransform: 'uppercase',
-          fontWeight: 600,
-          marginBottom: 12,
-          border: '1px solid rgba(253,250,248,0.25)',
-        }}>
-          {ev.tag}
-        </div>
 
         <div style={{
           fontFamily: 'Cormorant Garamond, serif',

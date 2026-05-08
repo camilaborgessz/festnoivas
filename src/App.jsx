@@ -7,6 +7,7 @@ import ServicesSection from './components/ServicesSection';
 import PortfolioSection from './components/PortfolioSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import Footer from './components/Footer';
+import ScrollProgress from './components/ScrollProgress';
 
 import ProgressBar from './components/ProgressBar';
 import StepCard from './components/StepCard';
@@ -86,6 +87,36 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#FDFAF8' }}>
+      {/* Estilos globais: scrollbar customizada */}
+      <style>{`
+        /* Firefox */
+        html {
+          scrollbar-color: #7B1F3A #F5E8EC;
+          scrollbar-width: thin;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        ::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #F5E8EC;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #7B1F3A 0%, #A03B5A 100%);
+          border-radius: 8px;
+          border: 2px solid #F5E8EC;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #8B2A48 0%, #B84A6A 100%);
+        }
+        ::-webkit-scrollbar-corner {
+          background: #F5E8EC;
+        }
+      `}</style>
+
+      <ScrollProgress />
       <Navbar />
 
       <div id="hero">

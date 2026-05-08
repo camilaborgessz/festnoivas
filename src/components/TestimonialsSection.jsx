@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 const depoimentos = [
   {
     nome: 'Ana C.',
@@ -83,13 +84,120 @@ function Estrelas({ nota = 5 }) {
   );
 }
 
+function CardDepoimento({ d }) {
+  return (
+    <div className="testimonial-card" style={{
+      width: 340,
+      flexShrink: 0,
+      background: '#FDFAF8',
+      borderRadius: '24px 8px 24px 8px',
+      padding: '32px 28px',
+      boxShadow: '0 12px 36px rgba(123,31,58,0.12)',
+      transform: `rotate(${d.rotate}deg)`,
+      transition: 'transform 0.4s ease',
+      position: 'relative',
+      boxSizing: 'border-box',
+    }}
+      onMouseEnter={e => e.currentTarget.style.transform = 'rotate(0deg) translateY(-8px)'}
+      onMouseLeave={e => e.currentTarget.style.transform = `rotate(${d.rotate}deg)`}
+    >
+      <div style={{
+        position: 'absolute', top: -10, left: 24,
+        fontFamily: 'Cormorant Garamond, serif',
+        fontSize: 100, color: '#7B1F3A',
+        lineHeight: 1, opacity: 0.15,
+        fontStyle: 'italic',
+      }}>"</div>
+
+      {d.real && (
+        <div style={{
+          position: 'absolute', top: 14, right: 14,
+          background: '#7B1F3A',
+          color: '#FDFAF8',
+          fontSize: 9,
+          fontWeight: 600,
+          padding: '4px 10px',
+          borderRadius: 20,
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 4,
+        }}>
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Verificado
+        </div>
+      )}
+
+      <Estrelas nota={d.nota} />
+
+      <p style={{
+        fontFamily: 'Cormorant Garamond, serif',
+        fontSize: 17, color: '#2A1A20',
+        lineHeight: 1.55, fontWeight: 400,
+        fontStyle: 'italic',
+        margin: '20px 0 24px',
+        position: 'relative',
+      }}>
+        {d.texto}
+      </p>
+
+      <div style={{
+        paddingTop: 20,
+        borderTop: '1px dashed #E8D5DA',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 12,
+      }}>
+        <div>
+          <div style={{
+            fontFamily: 'Caveat, cursive',
+            fontSize: 24, color: '#7B1F3A',
+            lineHeight: 1.1,
+          }}>
+            {d.nome}
+          </div>
+          <div style={{ fontSize: 11, color: '#A07A87', letterSpacing: '0.15em', textTransform: 'uppercase', marginTop: 2 }}>
+            {d.data}
+          </div>
+        </div>
+        <div style={{
+          background: '#F5E8EC',
+          color: '#7B1F3A',
+          fontSize: 10, fontWeight: 600,
+          padding: '5px 12px',
+          borderRadius: 20,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          flexShrink: 0,
+        }}>
+          {d.estilo}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TestimonialsSection() {
+  // Detecta mobile para escolher o modo de scroll
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 900);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // ===== Auto-scroll (desktop apenas) =====
   const trackRef = useRef(null);
   const pauseRef = useRef(false);
   const animRef  = useRef(null);
   const posRef   = useRef(0);
 
   useEffect(() => {
+    if (isMobile) return; // mobile usa scroll-snap nativo, sem RAF
     const track = trackRef.current;
     if (!track) return;
 
@@ -104,9 +212,37 @@ export default function TestimonialsSection() {
     }
     animRef.current = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animRef.current);
-  }, []);
+  }, [isMobile]);
 
-  const todos = [...depoimentos, ...depoimentos];
+  // ===== Mobile: navegação por dots =====
+  const mobileTrackRef = useRef(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  useEffect(() => {
+    if (!isMobile) return;
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    const onScroll = () => {
+      const cardWidth = track.firstChild?.offsetWidth || 1;
+      const gap = 20;
+      const idx = Math.round(track.scrollLeft / (cardWidth + gap));
+      setActiveIdx(Math.min(idx, depoimentos.length - 1));
+    };
+    track.addEventListener('scroll', onScroll, { passive: true });
+    return () => track.removeEventListener('scroll', onScroll);
+  }, [isMobile]);
+
+  const goToCard = (idx) => {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+    const cardWidth = track.firstChild?.offsetWidth || 1;
+    const gap = 20;
+    track.scrollTo({ left: idx * (cardWidth + gap), behavior: 'smooth' });
+  };
+
+  // Para o desktop: duplica para criar loop contínuo
+  const todosDesktop = [...depoimentos, ...depoimentos];
 
   return (
     <section id="depoimentos" style={{
@@ -154,106 +290,84 @@ export default function TestimonialsSection() {
         </div>
       </div>
 
-      <div
-        onMouseEnter={() => pauseRef.current = true}
-        onMouseLeave={() => pauseRef.current = false}
-        style={{ overflow: 'hidden', cursor: 'grab', padding: '20px 0' }}
-      >
-        <div ref={trackRef} style={{ display: 'flex', gap: 28, width: 'max-content', padding: '20px 24px' }}>
-          {todos.map((d, i) => (
-            <div key={i} style={{
-              width: 340,
-              flexShrink: 0,
-              background: '#FDFAF8',
-              borderRadius: '24px 8px 24px 8px',
-              padding: '32px 28px',
-              boxShadow: '0 12px 36px rgba(123,31,58,0.12)',
-              transform: `rotate(${d.rotate}deg)`,
-              transition: 'transform 0.4s ease',
-              position: 'relative',
-            }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'rotate(0deg) translateY(-8px)'}
-              onMouseLeave={e => e.currentTarget.style.transform = `rotate(${d.rotate}deg)`}
-            >
-              <div style={{
-                position: 'absolute', top: -10, left: 24,
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: 100, color: '#7B1F3A',
-                lineHeight: 1, opacity: 0.15,
-                fontStyle: 'italic',
-              }}>"</div>
-
-              {d.real && (
-                <div style={{
-                  position: 'absolute', top: 14, right: 14,
-                  background: '#7B1F3A',
-                  color: '#FDFAF8',
-                  fontSize: 9,
-                  fontWeight: 600,
-                  padding: '4px 10px',
-                  borderRadius: 20,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 4,
-                }}>
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                  Verificado
-                </div>
-              )}
-
-              <Estrelas nota={d.nota} />
-
-              <p style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: 17, color: '#2A1A20',
-                lineHeight: 1.55, fontWeight: 400,
-                fontStyle: 'italic',
-                margin: '20px 0 24px',
-                position: 'relative',
-              }}>
-                {d.texto}
-              </p>
-
-              <div style={{
-                paddingTop: 20,
-                borderTop: '1px dashed #E8D5DA',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: 12,
-              }}>
-                <div>
-                  <div style={{
-                    fontFamily: 'Caveat, cursive',
-                    fontSize: 24, color: '#7B1F3A',
-                    lineHeight: 1.1,
-                  }}>
-                    {d.nome}
-                  </div>
-                  <div style={{ fontSize: 11, color: '#A07A87', letterSpacing: '0.15em', textTransform: 'uppercase', marginTop: 2 }}>
-                    {d.data}
-                  </div>
-                </div>
-                <div style={{
-                  background: '#F5E8EC',
-                  color: '#7B1F3A',
-                  fontSize: 10, fontWeight: 600,
-                  padding: '5px 12px',
-                  borderRadius: 20,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  flexShrink: 0,
-                }}>
-                  {d.estilo}
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* Desktop: auto-scroll com pause no hover */}
+      {!isMobile && (
+        <div
+          onMouseEnter={() => pauseRef.current = true}
+          onMouseLeave={() => pauseRef.current = false}
+          style={{ overflow: 'hidden', cursor: 'grab', padding: '20px 0' }}
+        >
+          <div ref={trackRef} style={{ display: 'flex', gap: 28, width: 'max-content', padding: '20px 24px' }}>
+            {todosDesktop.map((d, i) => (
+              <CardDepoimento key={i} d={d} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div style={{ textAlign: 'center', marginTop: 20 }}>
+      )}
+
+      {/* Mobile: scroll-snap nativo (swipe horizontal) */}
+      {isMobile && (
+        <>
+          <div
+            ref={mobileTrackRef}
+            className="testimonial-mobile-track"
+            style={{
+              display: 'flex',
+              gap: 20,
+              overflowX: 'auto',
+              overflowY: 'visible',
+              scrollSnapType: 'x mandatory',
+              WebkitOverflowScrolling: 'touch',
+              padding: '20px 24px',
+              scrollPaddingLeft: 24,
+              scrollbarWidth: 'none',
+            }}
+          >
+            {depoimentos.map((d, i) => (
+              <div key={i} style={{
+                flex: '0 0 auto',
+                scrollSnapAlign: 'start',
+                paddingTop: 8,
+                paddingBottom: 8,
+              }}>
+                <CardDepoimento d={d} />
+              </div>
+            ))}
+            {/* Espaço final para permitir snap do último card */}
+            <div style={{ flex: '0 0 8px' }} />
+          </div>
+
+          {/* Indicadores (dots) */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 8,
+            marginTop: 24,
+            padding: '0 20px',
+            flexWrap: 'wrap',
+          }}>
+            {depoimentos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToCard(i)}
+                aria-label={`Depoimento ${i + 1}`}
+                style={{
+                  width: i === activeIdx ? 24 : 8,
+                  height: 8,
+                  borderRadius: 4,
+                  border: 'none',
+                  background: i === activeIdx ? '#7B1F3A' : 'rgba(123,31,58,0.25)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  padding: 0,
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      <div style={{ textAlign: 'center', marginTop: 28, padding: '0 20px' }}>
         <a
           href="https://www.casamentos.com.br/decoracao-casamento/fest-noivas--e280307"
           target="_blank"
@@ -267,6 +381,17 @@ export default function TestimonialsSection() {
           Ver mais avaliações no Casamentos.com.br ↗
         </a>
       </div>
+
+      <style>{`
+        .testimonial-mobile-track::-webkit-scrollbar { display: none; }
+
+        @media (max-width: 500px) {
+          .testimonial-card {
+            width: 280px !important;
+            padding: 26px 22px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
