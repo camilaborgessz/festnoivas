@@ -4,7 +4,7 @@ const links = [
   { label: 'Início',      id: 'hero'         },
   { label: 'Quem Somos',  id: 'sobre'        },
   { label: 'Serviços',    id: 'servicos'     },
-  { label: 'Eventos',     id: 'portfolio'    },
+  { label: 'Porfólio',     id: 'portfolio'    },
   { label: 'Depoimentos', id: 'depoimentos'  },
   { label: 'Formulário',  id: 'formulario'   },
 ];
