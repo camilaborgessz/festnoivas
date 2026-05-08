@@ -18,7 +18,7 @@ const servicos = [
     subtitulo: 'As melhores experiências sensoriais',
     img: `${base}/imgs/drinks.jpeg`,
     texto: 'O buffet é o "abraço" nos convidados. É como montar um restaurante de luxo exclusivo para vocês, com chefs treinados para garantir agilidade, sabor e uma apresentação visual impecável.',
-    destaques: ['Menu de degustação completo e personalizado', 'Chefs treinados ', 'Mesa de doces artesanais'],
+    destaques: ['Menu de degustação completo e personalizado', 'Chefs treinados '],
     accent: '#9B2E50',
     bg: '#FDFAF8',
   },
