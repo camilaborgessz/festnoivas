@@ -33,7 +33,7 @@ export default function HeroSection({ onStartForm }) {
     }}>
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: `url(${base}/imgs/fundo.jpeg)`,
+        backgroundImage: `url(${base}/imgs/fundo.jpeg?v=2)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,

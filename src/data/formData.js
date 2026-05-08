@@ -9,7 +9,7 @@ export const estilosDecoracao = [
     paleta: ['#F5F1EC', '#D8CFC4', '#2A2724'],
     elementos: ['Velas pilar brancas', 'Folhagens verdes pontuais', 'Mesas longas de madeira clara', 'Iluminação quente e baixa'],
     imgs: [
-      `${pub}/imgs/minimalista.jpeg`,
+      `${pub}/imgs/minimalista.png`,
       `${pub}/imgs/minimalista1.jpeg`,
       `${pub}/imgs/minimalista2.jpeg`,
       `${pub}/imgs/minimalista3.jpeg`,
@@ -50,7 +50,7 @@ export const estilosDecoracao = [
     paleta: ['#2D5F3F', '#FF6B35', '#FFC857'],
     elementos: ['Folhagens grandes (Monstera, palmeiras)', 'Flores em tons quentes', 'Frutas tropicais nas mesas', 'Arranjos suspensos exuberantes'],
     imgs: [
-      `${pub}/imgs/tropical.jpeg`,
+      `${pub}/imgs/tropical.png`,
       `${pub}/imgs/tropical1.jpeg`,
       `${pub}/imgs/tropical2.jpeg`,
       `${pub}/imgs/tropical3.jpeg`,
@@ -64,7 +64,7 @@ export const estilosDecoracao = [
     paleta: ['#D4A574', '#A0522D', '#F4E4C1'],
     elementos: ['Capim-dos-pampas e folhagens secas', 'Macramês e tecidos com franjas', 'Tapetes persas e almofadões', 'Mobiliário vintage e baixo'],
     imgs: [
-      `${pub}/imgs/Boho.jpeg`,
+      `${pub}/imgs/Boho.png`,
       `${pub}/imgs/boho1.jpeg`,
       `${pub}/imgs/boho2.jpeg`,
       `${pub}/imgs/boho3.jpeg`,
