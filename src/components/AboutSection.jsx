@@ -3,8 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 const numeros = [
   { valor: '500+', label: 'Casamentos realizados' },
   { valor: '20',   label: 'Anos de experiência'   },
-  { valor: '94%',  label: 'Casais que recomendam' },
-  { valor: '4.7★', label: 'Avaliação média'        },
 ];
 
 export default function AboutSection() {
@@ -80,15 +78,20 @@ export default function AboutSection() {
             transition: 'all 1s cubic-bezier(0.2, 0.8, 0.3, 1) 0.2s',
           }}>
             <div style={{
-              borderRadius: '180px 24px 180px 24px',
+              borderRadius: '24px 160px 24px 160px',
               overflow: 'hidden',
-              aspectRatio: '4/5',
+              aspectRatio: '4/3',
               boxShadow: '0 30px 60px rgba(123,31,58,0.18)',
             }}>
               <img
-                src={`${process.env.PUBLIC_URL}/imgs/about.jpeg`}
-                alt="Decoração Fest Noivas — passarela espelhada"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                src={`${process.env.PUBLIC_URL}/imgs/equipe.jpeg`}
+                alt="Equipe Fest Noivas"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
               />
             </div>
  
@@ -151,17 +154,21 @@ export default function AboutSection() {
         
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: 'repeat(2, minmax(0, 280px))',
           gap: 0,
           marginTop: 100,
           paddingTop: 48,
           borderTop: '1px solid #E8D5DA',
+          justifyContent: 'center',
+          maxWidth: 600,
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }} className="about-stats">
           {numeros.map((n, i) => (
             <div key={i} style={{
               textAlign: 'center',
               padding: '0 16px',
-              borderRight: i < 3 ? '1px solid #E8D5DA' : 'none',
+              borderRight: i < numeros.length - 1 ? '1px solid #E8D5DA' : 'none',
               opacity: visible ? 1 : 0,
               transform: visible ? 'translateY(0)' : 'translateY(30px)',
               transition: `all 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) ${0.6 + i * 0.12}s`,
@@ -198,12 +205,17 @@ export default function AboutSection() {
         }
         @media (max-width: 900px) {
           .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .about-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 0 !important; }
-          .about-stats > div:nth-child(2) { border-right: none !important; }
         }
         @media (max-width: 500px) {
-          .about-stats { grid-template-columns: 1fr !important; }
-          .about-stats > div { border-right: none !important; padding: 16px 0 !important; border-bottom: 1px solid #E8D5DA; }
+          .about-stats {
+            grid-template-columns: 1fr !important;
+            max-width: 320px !important;
+          }
+          .about-stats > div {
+            border-right: none !important;
+            padding: 20px 0 !important;
+            border-bottom: 1px solid #E8D5DA;
+          }
           .about-stats > div:last-child { border-bottom: none; }
         }
       `}</style>

@@ -18,8 +18,8 @@ export default function Footer() {
               Há 20 anos criando cenários inspiradores, exclusivos e inesquecíveis em Porto Velho. Cada decoração representa a personalidade do casal.
             </p>
             <div style={{ fontSize: 12, color: '#C4889A', opacity: 0.7, lineHeight: 1.6 }}>
-              📍 Rua Afonso Pena, 239<br />
-              Porto Velho — Rondônia
+              📍Av. Rogerio Weber, 1867<br />
+              Centro, Porto Velho - RO, 76801-030
             </div>
           </div>
 

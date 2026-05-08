@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -41,6 +41,10 @@ export default function App() {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  useEffect(() => {
+    if (done) scrollToForm();
+  }, [done]);
+
   function validate(s) {
     switch (s) {
       case 0: if (!data) return { 0: 'Por favor, informe a data do casamento.' }; break;
@@ -74,7 +78,6 @@ export default function App() {
     const localFinal = local === 'outro' ? outroLocal.trim() : local;
     setDadosFinais({ data, convidados, local: localFinal, cerimonial, estilos });
     setDone(true);
-    scrollToForm();
   }
 
   function toggleEstilo(nome) {

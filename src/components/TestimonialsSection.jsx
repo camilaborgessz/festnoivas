@@ -25,14 +25,16 @@ const depoimentos = [
     nota: 5.0,
     texto: 'Eu confio em vocês, os melhores da cidade, parabéns Pedro e Janaína',
     rotate: -1,
+    real: true,
   },
   {
     nome: 'Sara Matos',
     data: 'Jun 2026',
     estilo: 'Decoração',
     nota: 5.0,
-    texto: 'Os melhores, zeroconsole.log(""); arrependimentos, contratei os melhores, impecáveis do início ao fim, eternamente grata.',
+    texto: 'Os melhores, zero arrependimentos, contratei os melhores, impecáveis do início ao fim, eternamente grata.',
     rotate: 2,
+    real: true,
   },
   {
     nome: 'Thainâ Bennion',
@@ -41,6 +43,7 @@ const depoimentos = [
     nota: 5.0,
     texto: 'Muito obrigada por fazerem esse dia tão lindo, foi espetacular a decoração de vocês, com toda certeza ficará marcado em nossas vidas!',
     rotate: -1.5,
+    real: true,
   },
   {
     nome: 'Fernanda Melo',
@@ -49,6 +52,7 @@ const depoimentos = [
     nota: 5.0,
     texto: 'Só gratidão, vocês superaram 1000% das minhas expectativas, foi tudo mais do que perfeito',
     rotate: 1,
+    real: true,
   },
 ];
 

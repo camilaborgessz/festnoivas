@@ -4,6 +4,7 @@ const polaroids = [
   { src: `${base}/imgs/polaroid1.jpeg`, rotate: -8, top: '14%',    left: '4%',  delay: 0.2, float: 0 },
   { src: `${base}/imgs/polaroid2.jpeg`, rotate:  6, top: '14%',    right: '5%', delay: 0.5, float: 1 },
   { src: `${base}/imgs/polaroid3.jpeg`, rotate: -5, bottom: '14%', left: '7%',  delay: 0.8, float: 2 },
+  { src: `${base}/imgs/polaroid4.jpeg`, rotate:  7, bottom: '14%', right: '7%', delay: 1.0, float: 0 },
 ];
 
 export default function HeroSection({ onStartForm }) {
@@ -84,6 +85,24 @@ export default function HeroSection({ onStartForm }) {
         padding: '0 24px',
         maxWidth: 1200,
       }}>
+        <div className="reveal-up hero-logo" style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: 32,
+          animationDelay: '0.05s',
+        }}>
+          <img
+            src={`${base}/logoFestnoivas.svg`}
+            alt="Fest Noivas"
+            style={{
+              height: 100,
+              width: 'auto',
+              filter: 'brightness(0) invert(1) drop-shadow(0 4px 18px rgba(0,0,0,0.4))',
+              opacity: 0.95,
+            }}
+          />
+        </div>
+
         <div className="reveal-up" style={{
           display: 'inline-flex', alignItems: 'center', gap: 12,
           fontSize: 11, fontWeight: 500, letterSpacing: '0.35em',
@@ -94,7 +113,7 @@ export default function HeroSection({ onStartForm }) {
           justifyContent: 'center',
         }}>
           <span style={{ width: 24, height: 1, background: '#F5E8EC', opacity: 0.6 }} />
-          Fest Noivas · Porto Velho · 20 anos
+          Porto Velho · 20 anos
           <span style={{ width: 24, height: 1, background: '#F5E8EC', opacity: 0.6 }} />
         </div>
 
@@ -124,7 +143,7 @@ export default function HeroSection({ onStartForm }) {
             margin: '8px 0',
             animationDelay: '0.5s',
           }}>
-            histórias
+            Histórias
           </span>
           <span className="reveal-up" style={{
             display: 'block', fontSize: 'clamp(24px, 4.5vw, 58px)', fontWeight: 300,
@@ -232,12 +251,48 @@ export default function HeroSection({ onStartForm }) {
           0% { top: -100%; } 100% { top: 100%; }
         }
 
+        /* Tablet: polaroides menores, ainda visíveis */
         @media (max-width: 900px) {
-          .polaroid { display: none; }
+          .polaroid {
+            width: 110px !important;
+            padding: 6px !important;
+            padding-bottom: 22px !important;
+          }
+          .polaroid img {
+            height: 120px !important;
+          }
         }
+
+        /* Mobile: só 2 polaroides (uma de cada lado), bem pequenas e nos cantos */
+        @media (max-width: 600px) {
+          .polaroid {
+            width: 78px !important;
+            padding: 4px !important;
+            padding-bottom: 14px !important;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.55), 0 4px 8px rgba(0,0,0,0.35) !important;
+          }
+          .polaroid img {
+            height: 80px !important;
+          }
+          /* esconde polaroides do meio/topo no mobile, mantém só as de baixo */
+          .polaroid:nth-child(4),
+          .polaroid:nth-child(5) {
+            top: auto !important;
+            bottom: 4% !important;
+          }
+          .polaroid:nth-child(6),
+          .polaroid:nth-child(7) {
+            top: 6% !important;
+            bottom: auto !important;
+          }
+          .hero-logo img {
+            height: 56px !important;
+          }
+        }
+
         @media (max-width: 768px) {
           .scroll-indicator { display: none !important; }
-          .hero-content { padding-top: 80px !important; }
+          .hero-content { padding-top: 60px !important; padding-bottom: 100px !important; }
         }
         @media (max-width: 600px) {
           section h1 .reveal-up { letter-spacing: -0.01em; }
