@@ -275,19 +275,6 @@ export default function TestimonialsSection() {
             histórias verdadeiras
           </em>
         </h2>
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 12,
-          marginTop: 28, padding: '8px 20px',
-          background: '#fff', borderRadius: 50,
-          boxShadow: '0 4px 16px rgba(123,31,58,0.08)',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-        }}>
-          <Estrelas nota={4.7} />
-          <span style={{ fontSize: 13, color: '#2A1A20', fontWeight: 500 }}>
-            4.7 · Recomendado por 94% dos casais
-          </span>
-        </div>
       </div>
 
       {/* Desktop: auto-scroll com pause no hover */}
