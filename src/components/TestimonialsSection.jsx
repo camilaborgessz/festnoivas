@@ -241,6 +241,12 @@ export default function TestimonialsSection() {
   const animRef  = useRef(null);
   const posRef   = useRef(0);
 
+  // ===== Drag (desktop) =====
+  const isDraggingRef   = useRef(false);
+  const dragStartXRef   = useRef(0);
+  const dragStartPosRef = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
+
   useEffect(() => {
     if (isMobile) return; // mobile usa scroll-snap nativo, sem RAF
     const track = trackRef.current;
@@ -258,6 +264,44 @@ export default function TestimonialsSection() {
     animRef.current = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animRef.current);
   }, [isMobile]);
+
+  useEffect(() => {
+    if (isMobile) return;
+
+    const handleMouseMove = (e) => {
+      if (!isDraggingRef.current) return;
+      const delta = e.clientX - dragStartXRef.current;
+      const track = trackRef.current;
+      if (!track) return;
+      const halfW = track.scrollWidth / 2;
+      let newPos = dragStartPosRef.current - delta;
+      newPos = ((newPos % halfW) + halfW) % halfW;
+      posRef.current = newPos;
+      track.style.transform = `translateX(-${newPos}px)`;
+    };
+
+    const handleMouseUp = () => {
+      if (!isDraggingRef.current) return;
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      pauseRef.current = false;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isMobile]);
+
+  const handleDesktopMouseDown = (e) => {
+    isDraggingRef.current = true;
+    dragStartXRef.current = e.clientX;
+    dragStartPosRef.current = posRef.current;
+    setIsDragging(true);
+    e.preventDefault();
+  };
 
   // ===== Mobile: navegação por dots =====
   const mobileTrackRef = useRef(null);
@@ -322,12 +366,18 @@ export default function TestimonialsSection() {
         </h2>
       </div>
 
-      {/* Desktop: auto-scroll com pause no hover */}
+      {/* Desktop: auto-scroll com pause no hover + drag */}
       {!isMobile && (
         <div
-          onMouseEnter={() => pauseRef.current = true}
-          onMouseLeave={() => pauseRef.current = false}
-          style={{ overflow: 'hidden', cursor: 'grab', padding: '20px 0' }}
+          onMouseEnter={() => { pauseRef.current = true; }}
+          onMouseLeave={() => { if (!isDraggingRef.current) pauseRef.current = false; }}
+          onMouseDown={handleDesktopMouseDown}
+          style={{
+            overflow: 'hidden',
+            cursor: isDragging ? 'grabbing' : 'grab',
+            padding: '20px 0',
+            userSelect: 'none',
+          }}
         >
           <div ref={trackRef} style={{ display: 'flex', gap: 28, width: 'max-content', padding: '20px 24px', alignItems: 'flex-start' }}>
             {todosDesktop.map((d, i) => (
