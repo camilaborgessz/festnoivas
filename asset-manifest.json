@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/festnoivas/static/js/main.4bfb860e.js",
-    "index.html": "/festnoivas/index.html",
-    "main.4bfb860e.js.map": "/festnoivas/static/js/main.4bfb860e.js.map"
+    "main.js": "/static/js/main.72e10f0f.js",
+    "index.html": "/index.html",
+    "main.72e10f0f.js.map": "/static/js/main.72e10f0f.js.map"
   },
   "entrypoints": [
-    "static/js/main.4bfb860e.js"
+    "static/js/main.72e10f0f.js"
   ]
 }
