@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 const base = process.env.PUBLIC_URL || '';
 
 const polaroids = [
-  { src: `${base}/imgs/polaroid1.jpeg`, rotate: -8, top: '18%', left: '2%', delay: 0.2, float: 0 },
-  { src: `${base}/imgs/polaroid2.jpeg`, rotate: 6, top: '18%', right: '2%', delay: 0.5, float: 1 },
-  { src: `${base}/imgs/polaroid3.jpeg`, rotate: -5, bottom: '12%', left: '3%', delay: 0.8, float: 2 },
-  { src: `${base}/imgs/polaroid4.jpeg`, rotate: 7, bottom: '12%', right: '3%', delay: 1.0, float: 0 },
+  { src: `${base}/imgs/polaroid1.jpeg`, alt: 'Decoração de casamento Fest Noivas', rotate: -8, top: '18%', left: '2%', delay: 0.2, float: 0 },
+  { src: `${base}/imgs/polaroid2.jpeg`, alt: 'Cenário de casamento em Porto Velho', rotate: 6, top: '18%', right: '2%', delay: 0.5, float: 1 },
+  { src: `${base}/imgs/polaroid3.jpeg`, alt: 'Festa de casamento decorada pela Fest Noivas', rotate: -5, bottom: '12%', left: '3%', delay: 0.8, float: 2 },
+  { src: `${base}/imgs/polaroid4.jpeg`, alt: 'Decoração floral para casamento', rotate: 7, bottom: '12%', right: '3%', delay: 1.0, float: 0 },
 ];
 
 export default function HeroSection({ onStartForm }) {
@@ -68,7 +68,7 @@ export default function HeroSection({ onStartForm }) {
           transition: `opacity 1s ease ${p.delay}s, transform 1s cubic-bezier(0.2, 0.8, 0.3, 1) ${p.delay}s`,
           zIndex: 3,
         }}>
-          <img src={p.src} alt="" style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
+          <img src={p.src} alt={p.alt} style={{ width: '100%', height: 180, objectFit: 'cover', display: 'block' }} />
         </div>
       ))}
 
@@ -221,7 +221,7 @@ export default function HeroSection({ onStartForm }) {
               boxShadow: '0 14px 28px rgba(0,0,0,0.45), 0 4px 8px rgba(0,0,0,0.3)',
               transform: `rotate(${p.rotate * 0.6}deg)`,
             }}>
-              <img src={p.src} alt="" style={{ width: '100%', height: 88, objectFit: 'cover', display: 'block' }} />
+              <img src={p.src} alt={p.alt} style={{ width: '100%', height: 88, objectFit: 'cover', display: 'block' }} />
             </div>
           ))}
         </div>
