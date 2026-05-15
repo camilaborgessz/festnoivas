@@ -136,7 +136,7 @@ export default function ServicesSection() {
         flexDirection: 'column',
       }}>
 
-        <div style={{
+        <div className="service-header" style={{
           padding: '60px 48px 24px',
           display: 'flex',
           justifyContent: 'space-between',
@@ -219,7 +219,7 @@ export default function ServicesSection() {
                   background: s.bg,
                 }}>
 
-                  <div style={{
+                  <div className="service-img-wrap" style={{
                     position: 'relative',
                     height: '70vh',
                     maxHeight: 560,
@@ -341,24 +341,35 @@ export default function ServicesSection() {
       </div>
 
       <style>{`
+        /* ── Largura ── */
         @media (max-width: 1200px) {
-          .service-panel {
-            padding: 24px 48px 48px !important;
-            gap: 40px !important;
-          }
-          .service-num-deco {
-            font-size: 130px !important;
-          }
+          .service-header { padding: 48px 48px 20px !important; }
+          .service-panel  { padding: 16px 48px 40px !important; gap: 40px !important; }
+          .service-num-deco { font-size: 130px !important; }
         }
         @media (max-width: 1050px) {
-          .service-panel {
-            padding: 20px 32px 40px !important;
-            gap: 24px !important;
-          }
-          .service-num-deco {
-            font-size: 100px !important;
-            margin-bottom: -12px !important;
-          }
+          .service-header { padding: 36px 32px 16px !important; }
+          .service-panel  { padding: 12px 32px 32px !important; gap: 24px !important; }
+          .service-num-deco { font-size: 100px !important; margin-bottom: -10px !important; }
+        }
+
+        /* ── Altura (zoom alto ou tela curta) ── */
+        @media (max-height: 820px) {
+          .service-header { padding-top: 40px !important; padding-bottom: 14px !important; }
+          .service-img-wrap { height: 58vh !important; }
+          .service-panel { padding-top: 12px !important; padding-bottom: 36px !important; }
+        }
+        @media (max-height: 700px) {
+          .service-header { padding-top: 24px !important; padding-bottom: 10px !important; }
+          .service-img-wrap { height: 50vh !important; max-height: 380px !important; }
+          .service-panel { padding-top: 8px !important; padding-bottom: 24px !important; }
+          .service-num-deco { font-size: 90px !important; margin-bottom: -8px !important; }
+        }
+        @media (max-height: 600px) {
+          .service-header { padding-top: 16px !important; padding-bottom: 8px !important; }
+          .service-img-wrap { height: 44vh !important; max-height: 300px !important; }
+          .service-panel { padding-top: 4px !important; padding-bottom: 16px !important; }
+          .service-num-deco { display: none !important; }
         }
       `}</style>
     </section>
