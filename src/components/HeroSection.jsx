@@ -20,7 +20,7 @@ export default function HeroSection({ onStartForm }) {
   }, []);
 
   return (
-    <section style={{
+    <section className="hero-section" style={{
       position: 'relative',
       minHeight: '100vh',
       overflow: 'hidden',
@@ -30,6 +30,8 @@ export default function HeroSection({ onStartForm }) {
       justifyContent: 'center',
       alignItems: 'center',
       paddingTop: 100,
+      paddingBottom: 40,
+      boxSizing: 'border-box',
     }}>
       <div style={{
         position: 'absolute', inset: 0,
@@ -272,23 +274,15 @@ export default function HeroSection({ onStartForm }) {
 
         /* Desktop médio: encolhe polaroides */
         @media (max-width: 1280px) {
-          .polaroid-desktop {
-            width: 130px !important;
-          }
-          .polaroid-desktop img {
-            height: 140px !important;
-          }
+          .polaroid-desktop { width: 130px !important; }
+          .polaroid-desktop img { height: 140px !important; }
         }
 
         /* Desktop menor: esconde as polaroids de baixo que sobrepõem os botões */
         @media (max-width: 1100px) {
           .polaroid-bottom { display: none !important; }
-          .polaroid-desktop {
-            width: 110px !important;
-          }
-          .polaroid-desktop img {
-            height: 120px !important;
-          }
+          .polaroid-desktop { width: 110px !important; }
+          .polaroid-desktop img { height: 120px !important; }
         }
 
         /* Tablet grande: esconde todas as polaroids absolutas */
@@ -302,11 +296,26 @@ export default function HeroSection({ onStartForm }) {
         /* Mobile */
         @media (max-width: 700px) {
           .hero-logo img { height: 56px !important; }
-          section { padding-bottom: 60px !important; }
         }
 
         @media (max-width: 600px) {
           section h1 .reveal-up { letter-spacing: -0.01em; }
+        }
+
+        /* ── Altura curta (zoom alto ou tela baixa) ── */
+        @media (max-height: 820px) {
+          .hero-section { padding-top: 80px !important; padding-bottom: 32px !important; }
+          .hero-logo img { height: 80px !important; }
+        }
+        @media (max-height: 720px) {
+          .hero-section { padding-top: 60px !important; padding-bottom: 24px !important; }
+          .hero-logo img { height: 64px !important; }
+          .hero-logo { margin-bottom: 20px !important; }
+        }
+        @media (max-height: 640px) {
+          .hero-section { padding-top: 48px !important; padding-bottom: 16px !important; }
+          .hero-logo img { height: 52px !important; }
+          .hero-logo { margin-bottom: 14px !important; }
         }
       `}</style>
     </section>
