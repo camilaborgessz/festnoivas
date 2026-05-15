@@ -207,7 +207,7 @@ export default function ServicesSection() {
               const localScale = isActive ? 1 : 0.94;
 
               return (
-                <div key={i} style={{
+                <div key={i} className="service-panel" style={{
                   width: '100vw',
                   height: '100%',
                   flexShrink: 0,
@@ -259,7 +259,7 @@ export default function ServicesSection() {
                     transform: `translateX(${isActive ? 0 : 30}px)`,
                     transition: 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.3, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) 0.05s',
                   }}>
-                    <div aria-hidden style={{
+                    <div aria-hidden className="service-num-deco" style={{
                       fontFamily: 'Cormorant Garamond, serif',
                       fontStyle: 'italic',
                       fontSize: 180,
@@ -339,6 +339,28 @@ export default function ServicesSection() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1200px) {
+          .service-panel {
+            padding: 24px 48px 48px !important;
+            gap: 40px !important;
+          }
+          .service-num-deco {
+            font-size: 130px !important;
+          }
+        }
+        @media (max-width: 1050px) {
+          .service-panel {
+            padding: 20px 32px 40px !important;
+            gap: 24px !important;
+          }
+          .service-num-deco {
+            font-size: 100px !important;
+            margin-bottom: -12px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

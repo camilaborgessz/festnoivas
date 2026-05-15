@@ -203,6 +203,11 @@ export default function AboutSection() {
           from { transform: rotate(0deg); }
           to   { transform: rotate(360deg); }
         }
+        @media (max-width: 1100px) {
+          .about-grid {
+            gap: 48px !important;
+          }
+        }
         @media (max-width: 900px) {
           .about-grid {
             grid-template-columns: 1fr !important;

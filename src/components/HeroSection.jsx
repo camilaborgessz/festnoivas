@@ -57,7 +57,7 @@ export default function HeroSection({ onStartForm }) {
 
       {/* Polaroids posicionadas (apenas desktop/tablet) */}
       {polaroids.map((p, i) => (
-        <div key={i} className={`polaroid-desktop polaroid-${p.float}`} style={{
+        <div key={i} className={`polaroid-desktop polaroid-${p.float}${p.bottom ? ' polaroid-bottom' : ''}`} style={{
           position: 'absolute',
           top: p.top, left: p.left, right: p.right, bottom: p.bottom,
           width: 160, padding: 10, paddingBottom: 32,
@@ -270,8 +270,8 @@ export default function HeroSection({ onStartForm }) {
           0% { top: -100%; } 100% { top: 100%; }
         }
 
-        /* Notebooks menores: encolhe polaroides para não invadir texto */
-        @media (max-width: 1100px) {
+        /* Desktop médio: encolhe polaroides */
+        @media (max-width: 1280px) {
           .polaroid-desktop {
             width: 130px !important;
           }
@@ -280,30 +280,31 @@ export default function HeroSection({ onStartForm }) {
           }
         }
 
-        /* Tablet: polaroides ainda menores nos cantos */
-        @media (max-width: 900px) {
+        /* Desktop menor: esconde as polaroids de baixo que sobrepõem os botões */
+        @media (max-width: 1100px) {
+          .polaroid-bottom { display: none !important; }
           .polaroid-desktop {
             width: 110px !important;
-            padding: 6px !important;
-            padding-bottom: 22px !important;
           }
           .polaroid-desktop img {
-            height: 110px !important;
+            height: 120px !important;
           }
         }
 
-        /* Mobile: esconde as absolutas, mostra a faixa horizontal abaixo */
-        @media (max-width: 700px) {
+        /* Tablet grande: esconde todas as polaroids absolutas */
+        @media (max-width: 900px) {
           .polaroid-desktop { display: none !important; }
           .polaroids-mobile { display: flex !important; }
-          .hero-logo img { height: 64px !important; }
+          .hero-logo img { height: 72px !important; }
           .scroll-indicator { display: none !important; }
-          section { padding-bottom: 80px !important; }
         }
 
-        @media (max-width: 768px) {
-          .scroll-indicator { display: none !important; }
+        /* Mobile */
+        @media (max-width: 700px) {
+          .hero-logo img { height: 56px !important; }
+          section { padding-bottom: 60px !important; }
         }
+
         @media (max-width: 600px) {
           section h1 .reveal-up { letter-spacing: -0.01em; }
         }

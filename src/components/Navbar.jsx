@@ -153,7 +153,7 @@ export default function Navbar() {
           from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
           .nav-links { display: none !important; }
           .hamburger { display: block !important; }
         }
