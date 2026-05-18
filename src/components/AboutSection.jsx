@@ -60,7 +60,7 @@ export default function AboutSection() {
             lineHeight: 1.05,
             margin: 0,
           }}>
-            há 20 anos criando<br />
+          Há 20 anos criando<br />
             <em style={{ fontStyle: 'italic', color: '#7B1F3A', fontWeight: 400 }}>cenários inesquecíveis</em>
           </h2>
         </div>

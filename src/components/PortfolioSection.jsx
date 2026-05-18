@@ -150,13 +150,13 @@ export default function PortfolioSection() {
               fontWeight: 300, color: '#FDFAF8', lineHeight: 1.1, margin: 0,
               paddingBottom: 6,
             }}>
-              cenários que já<br />
+              Cenários que já<br />
               <em style={{ fontStyle: 'italic', color: '#E8A0B4', display: 'inline-block', paddingBottom: 4 }}>
                 eternizamos juntos
               </em>
             </h2>
           </div>
-          <a href="https://www.instagram.com/festnoivass" target="_blank" rel="noopener noreferrer" style={{
+          <a href="#formulario" style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             color: '#FDFAF8', textDecoration: 'none',
             border: '1px solid rgba(253,250,248,0.3)',
@@ -167,7 +167,7 @@ export default function PortfolioSection() {
             onMouseEnter={e => { e.currentTarget.style.background = '#7B1F3A'; e.currentTarget.style.borderColor = '#7B1F3A'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(253,250,248,0.3)'; }}
           >
-            ver mais no @festnoivass
+            entrar em contato
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M7 7h10v10" /></svg>
           </a>
         </div>

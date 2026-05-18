@@ -359,7 +359,7 @@ export default function TestimonialsSection() {
           margin: 0,
           paddingBottom: 6,
         }}>
-          casais reais,<br />
+          Casais reais,<br />
           <em style={{ fontStyle: 'italic', color: '#7B1F3A', display: 'inline-block', paddingBottom: 4 }}>
             histórias verdadeiras
           </em>

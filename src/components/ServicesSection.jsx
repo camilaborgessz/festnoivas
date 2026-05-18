@@ -5,20 +5,20 @@ const servicos = [
   {
     num: '01',
     titulo: 'Decoração',
-    subtitulo: 'O cenário que encanta',
+    subtitulo: 'O cenário que transforma sonhos em experiências inesquecíveis',
     img: `${base}/imgs/decoracao.jpeg`,
-    texto: 'A decoração vai muito além das flores. É uma logística de montagem que muitas vezes vira a noite, envolvendo arquitetos de eventos, floristas e um acervo exclusivo de mobiliário. É a transformação técnica de um espaço vazio no cenário dos seus sonhos.',
-    destaques: ['Acervo exclusivo de mobiliário', 'Floristas e arquitetos de eventos', 'Iluminação personalizada', 'Cenários para fotos'],
+    texto: 'A decoração é a alma visual do evento — o elemento que desperta emoções, encanta os convidados e traduz a personalidade de cada celebração. Muito além das flores, ela envolve um trabalho minucioso de criação, planejamento e execução, realizado por uma equipe especializada que transforma espaços vazios em cenários sofisticados e memoráveis',
+    destaques: ['Acervo exclusivo de mobiliário e peças decorativas', 'Floristas e arquitetos especializados em eventos', 'Projetos de iluminação personalizados', 'Cenários elegantes e instagramáveis para fotos', 'Montagem técnica'],
     accent: '#7B1F3A',
     bg: '#F5E8EC',
   },
   {
     num: '02',
     titulo: 'Buffet',
-    subtitulo: 'As melhores experiências sensoriais',
+    subtitulo: 'O buffet é a forma mais elegante de acolher os convidados — um verdadeiro abraço traduzido em sabores, aromas e experiências memoráveis. ',
     img: `${base}/imgs/drinks.jpeg`,
-    texto: 'O buffet é o "abraço" nos convidados. É como montar um restaurante de luxo exclusivo para vocês, com chefs treinados para garantir agilidade, sabor e uma apresentação visual impecável.',
-    destaques: ['Menu de degustação completo e personalizado', 'Chefs treinados ', "Sobremesas personalizadas"],
+    texto: 'Nossa equipe de chefs e profissionais especializados trabalha com precisão e sensibilidade para entregar um serviço impecável, unindo agilidade, alta gastronomia e uma apresentação visual refinada em cada prato servido. Mais do que um menu, desenvolvemos experiências gastronômicas personalizadas, alinhadas ao estilo e à essência de cada celebração.',
+    destaques: ['Menu degustação exclusivo e personalizado', 'Chefs treinados e equipe altamente qualificada', "Sobremesas autorais e personalizadas", "Alta gastronomia com apresentação sofisticada", "Serviço elegante, ágil e profissional"],
     accent: '#9B2E50',
     bg: '#FDFAF8',
   },
@@ -82,7 +82,7 @@ export default function ServicesSection() {
             lineHeight: 1.2,
             paddingBottom: 8,
           }}>
-            cada detalhe pensado<br />
+            Cada detalhe pensado<br />
             <em style={{ color: '#7B1F3A', display: 'inline-block', paddingBottom: 6 }}>para o seu grande dia</em>
           </h2>
         </div>
@@ -156,7 +156,7 @@ export default function ServicesSection() {
               margin: 0,
               paddingBottom: 8,        
             }}>
-              cada detalhe pensado<br />
+              Cada detalhe pensado<br />
               <em style={{
                 fontStyle: 'italic',
                 color: '#7B1F3A',

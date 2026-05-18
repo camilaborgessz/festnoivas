@@ -123,10 +123,10 @@ export default function App() {
         <HeroSection onStartForm={scrollToForm} />
       </div>
 
+      <TestimonialsSection />
       <AboutSection />
       <ServicesSection />
       <PortfolioSection />
-      <TestimonialsSection />
 
       <section id="formulario" ref={formRef} style={{ background: '#FDFAF8', padding: '80px 0 0' }}>
         <div style={{ textAlign: 'center', marginBottom: 48, padding: '0 24px' }}>
@@ -160,7 +160,7 @@ export default function App() {
               <ProgressBar current={step} total={TOTAL_STEPS} />
 
               {step === 0 && (
-                <StepCard number={1} question="Qual é a data do casamento?" sub="Informe a data prevista para a cerimônia." error={errors[0]}>
+                <StepCard number={1} question="Qual data escolhida para seu sonho?" sub="Informe a data prevista para a cerimônia." error={errors[0]}>
                   <input type="date" value={data} onChange={e => setData(e.target.value)}
                     style={{ ...inputStyle, display: 'block', WebkitAppearance: 'none', appearance: 'none', lineHeight: '1.5' }} />
                 </StepCard>

@@ -127,7 +127,7 @@ export default function HeroSection({ onStartForm }) {
             display: 'block', fontSize: 'clamp(34px, 6.5vw, 84px)', fontWeight: 300,
             animationDelay: '0.3s',
           }}>
-            cenários que contam
+            Cenários que contam
           </span>
           <span className="reveal-up word-massive" style={{
             display: 'block',

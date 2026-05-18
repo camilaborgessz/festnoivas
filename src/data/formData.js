@@ -5,23 +5,21 @@ export const estilosDecoracao = [
     id: "minimalista",
     nome: "Minimalista & Intimista",
     descricao: "Linhas limpas, neutros suaves e elegância discreta.",
-    descricaoLonga: "O minimalismo é o estilo do 'menos é mais'. Trabalha com paletas neutras (branco, cru, areia), poucos elementos decorativos cuidadosamente posicionados e uma estética arquitetônica. Ideal para casais que valorizam sofisticação silenciosa, ambientes com respiração visual e uma fotografia de altíssimo padrão estético.",
-    paleta: ['#F5F1EC', '#D8CFC4', '#2A2724'],
-    elementos: ['Velas pilar brancas', 'Folhagens verdes pontuais', 'Mesas longas de madeira clara', 'Iluminação quente e baixa'],
+    descricaoLonga: "O minimalismo traduz a elegância do “menos é mais”. Com uma estética sofisticada e contemporânea, esse estilo valoriza paletas neutras — como branco, areia e tons crus — além de poucos elementos decorativos, cuidadosamente escolhidos e posicionados para criar um ambiente leve, elegante e acolhedor. É perfeito para casais que apreciam uma decoração mais clean, com poucas flores, iluminação intimista e detalhes que falam pela sutileza.",
+    elementos: ['Velas e iluminação quente', 'Poucas flores, com arranjos delicados', 'Mesa do bolo reduzida e elegante', 'Objetos decorativos minimalistas', 'Ambiente sofisticado e aconchegante'],
     imgs: [
       `${pub}/imgs/minimalista.png`,
       `${pub}/imgs/minimalista1.jpeg`,
       `${pub}/imgs/minimalista2.jpeg`,
-      `${pub}/imgs/minimalista3.jpeg`,
+  
     ],
   },
   {
     id: "classico",
     nome: "Clássico",
     descricao: "Tradição e glamour",
-    descricaoLonga: "O clássico é o estilo da elegância eterna. Combina flores brancas em abundância (rosas, hortênsias, lírios), toques metálicos em ouro champagne, candelabros, taças de cristal e tecidos nobres. É a escolha de casais que querem aquele casamento que parece saído de um filme  atemporal e glamoroso.",
-    paleta: ['#FAF7F2', '#C9A961', '#1F1F1F'],
-    elementos: ['Flores brancas em abundância', 'Candelabros e velas', 'Toalhas de mesa em tecido nobre', 'Detalhes em dourado champagne'],
+    descricaoLonga: "O clássico é o estilo da elegância atemporal. Sofisticado e imponente, ele combina a grandiosidade das flores brancas em abundância com elementos refinados, como mesas de vidro e espelho, lustres marcantes, velas e detalhes luxuosos que criam uma atmosfera romântica e inesquecível. É a escolha perfeita para casais que sonham com um casamento digno de filme: glamoroso, delicado e eternamente elegante.",
+    elementos: ['Flores brancas em abundância', ' Lustres, candelabros e velas', 'Mesas de vidro e espelho', 'Toalhas em tecidos claros', 'Decoração imponente e romântica'],
     imgs: [
       `${pub}/imgs/classico1.jpeg`,
       `${pub}/imgs/classico2.png`,
@@ -33,9 +31,8 @@ export const estilosDecoracao = [
     id: "rustico",
     nome: "Rústico",
     descricao: "Madeira, palha e charme campestre com personalidade.",
-    descricaoLonga: "O rústico é o abraço caloroso de um casamento no interior mesmo dentro de um salão urbano. Trabalha texturas naturais (madeira de demolição, juta, palha), flores do campo (girassóis, margaridas, lavandas) e objetos com história (livros antigos, baús, garrafas vintage). Perfeito para casais que querem um clima informal, nostálgico e cheio de personalidade.",
-    paleta: ['#E8D5B7', '#8B6F47', '#3E2A1B'],
-    elementos: ['Madeira de demolição', 'Flores do campo e lavandas', 'Cordas, juta e tecidos crus', 'Lanternas e luzes pendentes'],
+    descricaoLonga: "O estilo rústico é uma decoração que valoriza a beleza da natureza. Com uma estética leve e acolhedora, ele valoriza materiais naturais e personalidade, criando uma atmosfera romântica e cheia de significado. Madeira, folhagens, flores mais desconstruídas, iluminação quente e elementos artesanais compõem esse cenário que encanta pela beleza natural. É um estilo que faz os convidados se sentirem acolhidos e conectados à essência do momento. Perfeito para casais que sonham com um casamento romântico, natural e sofisticado na medida certa.",
+    elementos: ['Madeira natural ', 'Folhagens e flores com aspecto orgânico', ' Iluminação quente com luminárias de vime ', 'Tons terrosos e paleta natural', 'Texturas naturais'],
     imgs: [
       `${pub}/imgs/rustico5.jpeg`,
       `${pub}/imgs/rustico6.jpeg`,
@@ -46,9 +43,8 @@ export const estilosDecoracao = [
     id: "tropical",
     nome: "Tropical",
     descricao: "Folhagens exuberantes, cores vivas e energia da natureza.",
-    descricaoLonga: "O tropical é o casamento mais alegre que existe, folhagens grandes (costela-de-Adão, palmeiras, bananeiras) em cenários generosos, flores em tons quentes (laranja, fúcsia, amarelo) e uma energia solar do começo ao fim. Combina perfeitamente com cerimônias ao ar livre, festas que vão noite adentro e casais que querem celebrar o amor com cor e movimento.",
-    paleta: ['#2D5F3F', '#FF6B35', '#FFC857'],
-    elementos: ['Folhagens grandes (Monstera, palmeiras)', 'Flores em tons quentes', 'Frutas tropicais nas mesas', 'Arranjos suspensos exuberantes'],
+    descricaoLonga: "O estilo tropical é vibrante, marcante e cheio de vida. Inspirado na exuberância da natureza, ele mistura folhagens imponentes, plantas amazônicas, flores em tons quentes e cenários generosos que transformam o casamento em uma experiência alegre, envolvente e inesquecível. Com cores intensas como laranja, fúcsia, amarelo e verde, esse estilo transmite energia, frescor e personalidade do início ao fim da celebração. É perfeito para cerimônias ao ar livre, festas animadas e casais que desejam um casamento leve, moderno e cheio de movimento. O tropical valoriza a beleza natural em sua forma mais exuberante, criando ambientes impactantes, acolhedores e sofisticados ao mesmo tempo.",
+    elementos: ['Folhagens grandes e volumosas', 'Plantas amazônicas e elementos naturais', ' Flores em tons quentes e vibrantes', 'Iluminação aconchegante', 'Decoração alegre, moderna e cheia de personalidade'],
     imgs: [
       `${pub}/imgs/tropical.png`,
       `${pub}/imgs/tropical1.jpeg`,
@@ -60,9 +56,8 @@ export const estilosDecoracao = [
     id: "boho",
     nome: "Boho",
     descricao: "Macramê, capim-dos-pampas e alma livre.",
-    descricaoLonga: "O boho é o estilo dos casais que vivem o amor com leveza. Trabalha com tons terrosos (terracota, ferrugem, areia), capim-dos-pampas, tapetes persas, almofadões no chão, macramês pendentes e uma estética desestruturada e cheia de alma.",
-    paleta: ['#D4A574', '#A0522D', '#F4E4C1'],
-    elementos: ['Capim-dos-pampas e folhagens secas', 'Macramês e tecidos com franjas', 'Tapetes persas e almofadões', 'Mobiliário vintage e baixo'],
+    descricaoLonga: "A decoração boho valoriza composições desconstruídas e elegantes, com tons terrosos, folhagens secas, flores desconstruídas, tecidos leves e madeira natural. Tudo é pensado para transmitir uma atmosfera artística e sofisticada ao mesmo tempo. É um estilo muito escolhido por casais que desejam um casamento moderno, leve e com identidade marcante, fugindo das composições mais tradicionais sem perder a elegância.",
+    elementos: ['Tons terrosos e paleta natural', 'Flores e folhagens com aspecto orgânico', 'Capim-dos-pampas e elementos secos', 'Macramês, tecidos leves e texturas artesanais', 'Mobiliário em madeira'],
     imgs: [
       `${pub}/imgs/Boho.png`,
       `${pub}/imgs/boho1.jpeg`,
@@ -75,5 +70,6 @@ export const estilosDecoracao = [
 export const locaisEvento = [
   { value: "Murano Eventos", label: "Murano Eventos" },
   { value: "Green Garden", label: "Green Garden" },
+  { value: "Rancho Alto", label: "Rancho Alto" },
   { value: "outro", label: "Outro local…" },
 ];
