@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const links = [
   { label: 'Início',      id: 'hero'         },
+  { label: 'Depoimentos', id: 'depoimentos'  },
   { label: 'Quem Somos',  id: 'sobre'        },
   { label: 'Serviços',    id: 'servicos'     },
-  { label: 'Porfólio',     id: 'portfolio'    },
-  { label: 'Depoimentos', id: 'depoimentos'  },
+  { label: 'Porfólio',    id: 'portfolio'    },
   { label: 'Formulário',  id: 'formulario'   },
 ];
 

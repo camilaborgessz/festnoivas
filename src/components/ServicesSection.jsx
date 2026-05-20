@@ -31,14 +31,14 @@ export default function ServicesSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 900);
+    const checkMobile = () => setIsMobile(window.innerWidth < 1100 || window.innerHeight < 900);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile) return; // desktop apenas (≥1100px)
 
     function onScroll() {
       const wrapper = wrapperRef.current;
@@ -70,6 +70,7 @@ export default function ServicesSection() {
   if (isMobile) {
     return (
       <section id="servicos" style={{ background: '#FDFAF8', padding: '20px 24px' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#A07A87', marginBottom: 14 }}>
             — O que oferecemos —
@@ -91,7 +92,7 @@ export default function ServicesSection() {
             background: s.bg, borderRadius: 24, padding: 24, marginBottom: 20,
             border: '1px solid #E8D5DA',
           }}>
-            <div style={{ borderRadius: '40px 8px 40px 8px', overflow: 'hidden', aspectRatio: '4/3', marginBottom: 20, position: 'relative' }}>
+            <div style={{ borderRadius: '40px 8px 40px 8px', overflow: 'hidden', height: 'min(60vw, 360px)', marginBottom: 20, position: 'relative' }}>
               <img src={s.img} alt={s.titulo} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{
                 position: 'absolute', top: 14, left: 14,
@@ -117,6 +118,7 @@ export default function ServicesSection() {
             ))}
           </div>
         ))}
+        </div>
       </section>
     );
   }
@@ -193,6 +195,7 @@ export default function ServicesSection() {
         <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
           <div ref={trackRef} style={{
             display: 'flex',
+            width: '100%',
             height: '100%',
             transform: `translateX(${translateX}%)`,
             transition: 'transform 0.05s linear',
@@ -208,9 +211,8 @@ export default function ServicesSection() {
 
               return (
                 <div key={i} className="service-panel" style={{
-                  width: '100vw',
+                  flex: '0 0 100%',
                   height: '100%',
-                  flexShrink: 0,
                   padding: '24px 80px 60px',
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
@@ -358,6 +360,7 @@ export default function ServicesSection() {
           .service-header { padding-top: 40px !important; padding-bottom: 14px !important; }
           .service-img-wrap { height: 58vh !important; }
           .service-panel { padding-top: 12px !important; padding-bottom: 36px !important; }
+          .service-num-deco { font-size: 110px !important; margin-bottom: -10px !important; }
         }
         @media (max-height: 700px) {
           .service-header { padding-top: 24px !important; padding-bottom: 10px !important; }
