@@ -35,7 +35,6 @@ export default function HeroSection({ onStartForm }) {
     }}>
       <div style={{
         position: 'absolute', inset: 0,
-        backgroundImage: `url(${base}/imgs/fundo.jpeg?v=2)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
@@ -308,12 +307,12 @@ export default function HeroSection({ onStartForm }) {
           .hero-logo img { height: 80px !important; }
         }
         @media (max-height: 720px) {
-          .hero-section { padding-top: 60px !important; padding-bottom: 24px !important; }
+          .hero-section { padding-top: 76px !important; padding-bottom: 24px !important; }
           .hero-logo img { height: 64px !important; }
           .hero-logo { margin-bottom: 20px !important; }
         }
         @media (max-height: 640px) {
-          .hero-section { padding-top: 48px !important; padding-bottom: 16px !important; }
+          .hero-section { padding-top: 77px !important; padding-bottom: 16px !important; }
           .hero-logo img { height: 52px !important; }
           .hero-logo { margin-bottom: 14px !important; }
         }

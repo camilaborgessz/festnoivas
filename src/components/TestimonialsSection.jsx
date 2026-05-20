@@ -129,7 +129,18 @@ function Estrelas({ nota = 5 }) {
   );
 }
 
+const COLLAPSED_H = 108; // ~4 linhas de texto
+
 function CardDepoimento({ d }) {
+  const [expanded, setExpanded] = useState(false);
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (el) setHasOverflow(el.scrollHeight > COLLAPSED_H + 4);
+  }, []);
+
   return (
     <div className="testimonial-card" style={{
       width: 340,
@@ -152,6 +163,7 @@ function CardDepoimento({ d }) {
         fontSize: 100, color: '#7B1F3A',
         lineHeight: 1, opacity: 0.15,
         fontStyle: 'italic',
+        pointerEvents: 'none',
       }}>"</div>
 
       {d.real && (
@@ -176,16 +188,48 @@ function CardDepoimento({ d }) {
 
       <Estrelas nota={d.nota} />
 
-      <p style={{
-        fontFamily: 'Cormorant Garamond, serif',
-        fontSize: 17, color: '#2A1A20',
-        lineHeight: 1.55, fontWeight: 400,
-        fontStyle: 'italic',
-        margin: '20px 0 24px',
-        position: 'relative',
-      }}>
-        {d.texto}
-      </p>
+      <div style={{ position: 'relative', margin: '20px 0 0' }}>
+        <p
+          ref={textRef}
+          style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontSize: 17, color: '#2A1A20',
+            lineHeight: 1.55, fontWeight: 400,
+            fontStyle: 'italic',
+            margin: 0,
+            maxHeight: expanded ? 2000 : COLLAPSED_H,
+            overflow: 'hidden',
+            transition: 'max-height 0.4s ease',
+          }}
+        >
+          {d.texto}
+        </p>
+        {hasOverflow && !expanded && (
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            height: 48,
+            background: 'linear-gradient(to bottom, transparent, #FDFAF8)',
+            pointerEvents: 'none',
+          }} />
+        )}
+      </div>
+
+      {hasOverflow && (
+        <button
+          onClick={e => { e.stopPropagation(); setExpanded(v => !v); }}
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: '#7B1F3A', fontFamily: 'Jost, sans-serif',
+            fontSize: 11, fontWeight: 600,
+            letterSpacing: '0.1em', textTransform: 'uppercase',
+            padding: '8px 0 4px',
+            marginBottom: 16,
+            display: 'flex', alignItems: 'center', gap: 4,
+          }}
+        >
+          {expanded ? 'Ver menos ↑' : 'Ver mais ↓'}
+        </button>
+      )}
 
       <div style={{
         paddingTop: 20,
