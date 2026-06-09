@@ -17,7 +17,7 @@ import NavButtons from './components/NavButtons';
 import SuccessScreen from './components/SuccessScreen';
 import { estilosDecoracao, locaisEvento } from './data/formData';
 
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 const inputStyle = {
   width: '100%', border: '1.5px solid #E8D5DA', borderRadius: 10,
   padding: '14px 16px', fontFamily: 'Jost, sans-serif', fontSize: 15,
@@ -36,6 +36,8 @@ export default function App() {
   const [outroLocal, setOutroLocal] = useState('');
   const [cerimonial, setCerimonial] = useState('');
   const [estilos, setEstilos] = useState([]);
+  const [comoChegou, setComoChegou] = useState('');
+  const [outroComoChegou, setOutroComoChegou] = useState('');
   const [dadosFinais, setDadosFinais] = useState(null);
 
   function scrollToForm() {
@@ -56,6 +58,10 @@ export default function App() {
         break;
       case 3: if (!cerimonial) return { 3: 'Por favor, selecione uma opção.' }; break;
       case 4: if (estilos.length === 0) return { 4: 'Por favor, selecione ao menos um estilo.' }; break;
+      case 5:
+        if (!comoChegou) return { 5: 'Por favor, selecione uma opção.' };
+        if (comoChegou === 'Outro' && !outroComoChegou.trim()) return { 5: 'Por favor, conte como chegou até nós.' };
+        break;
       default: break;
     }
     return {};
@@ -77,7 +83,8 @@ export default function App() {
 
   function handleSubmit() {
     const localFinal = local === 'outro' ? outroLocal.trim() : local;
-    setDadosFinais({ data, convidados, local: localFinal, cerimonial, estilos });
+    const comoChegouFinal = comoChegou === 'Outro' ? outroComoChegou.trim() : comoChegou;
+    setDadosFinais({ data, convidados, local: localFinal, cerimonial, estilos, comoChegou: comoChegouFinal });
     setDone(true);
   }
 
@@ -239,6 +246,28 @@ export default function App() {
                       </strong>
                       <span>{estilos.join(', ')}</span>
                     </div>
+                  )}
+                </StepCard>
+              )}
+
+              {step === 5 && (
+                <StepCard number={6} question="Como você chegou até a Fest Noivas?" sub="Selecione uma opção." error={errors[5]}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    {[
+                      'Indicação de amiga(o) ou familiar',
+                      'Indicação de cerimonialista ou assessor',
+                      'Já acompanho o Instagram de vocês',
+                      'Vi um anúncio no Instagram',
+                      'Pesquisei no Google',
+                      'Outro',
+                    ].map(op => (
+                      <RadioOption key={op} label={op} selected={comoChegou === op}
+                        onSelect={() => { setComoChegou(op); setErrors({}); }} />
+                    ))}
+                  </div>
+                  {comoChegou === 'Outro' && (
+                    <input type="text" value={outroComoChegou} onChange={e => setOutroComoChegou(e.target.value)}
+                      placeholder="Conte como chegou até nós…" style={{ ...inputStyle, marginTop: 12 }} />
                   )}
                 </StepCard>
               )}

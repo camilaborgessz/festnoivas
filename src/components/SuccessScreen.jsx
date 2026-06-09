@@ -11,6 +11,7 @@ export default function SuccessScreen({ dados }) {
     { label: 'Local',                value: dados.local },
     { label: 'Cerimonial',           value: dados.cerimonial },
     { label: 'Estilo(s) de decoração', value: dados.estilos.join(', ') },
+    { label: 'Como chegou até nós',    value: dados.comoChegou },
   ];
 
   return (
